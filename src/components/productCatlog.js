@@ -1,6 +1,6 @@
 // src/data/productCatalog.js
 export const productCatalog = {
-  0: [ // Designer Lighting Solution products
+  0: [ // Lighting products
     {
       id:"1",
       name: "Crystal Chandelier",
@@ -24,502 +24,504 @@ export const productCatalog = {
       }
     }
   ],
-  1: [ // Commercial Electrical Solutions products
-    {
-      "id": "l2",
-      "name": "Surya Shine NXT ",
-      "image": "/images/surya-shine-nxt-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Surya",
-        "Shape": "Round"
+  1:{
+    "ledpanel": [
+      {
+        "id": "l2",
+        "name": "Surya Shine NXT ",
+        "image": "/images/surya-shine-nxt-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Surya",
+          "Shape": "Round"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10w",
+              "price": "50"
+            },
+            {
+              "size": "15w",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10w",
-            "price": "50"
-          },
-          {
-            "size": "15w",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l3",
-      "name": "Surya Shine NXT Square",
-      "image": "/images/surya-shine-nxt-square.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Surya",
-        "Shape": "Square"
+      {
+        "id": "l3",
+        "name": "Surya Shine NXT Square",
+        "image": "/images/surya-shine-nxt-square.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Surya",
+          "Shape": "Square"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10w",
+              "price": "50"
+            },
+            {
+              "size": "15w",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10w",
-            "price": "50"
-          },
-          {
-            "size": "15w",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l",
-      "name": "Havells Trim NXT",
-      "image": "/images/havells-trim-nxt-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Havells",
-        "Shape": "Round"
+      {
+        "id": "l",
+        "name": "Havells Trim NXT",
+        "image": "/images/havells-trim-nxt-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Havells",
+          "Shape": "Round"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10w",
+              "price": "50"
+            },
+            {
+              "size": "15w",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10w",
-            "price": "50"
-          },
-          {
-            "size": "15w",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l4",
-      "name": "Havells Trim NXT",
-      "image": "/images/havells-trim-nxt-square.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Havells",
-        "Shape": "Square"
+      {
+        "id": "l4",
+        "name": "Havells Trim NXT",
+        "image": "/images/havells-trim-nxt-square.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Havells",
+          "Shape": "Square"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10w",
+              "price": "50"
+            },
+            {
+              "size": "15w",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10w",
-            "price": "50"
-          },
-          {
-            "size": "15w",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l5",
-      "name": "Havells Luna ",
-      "image": "/images/havells-luna-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Havells",
-        "Shape": "Round"
+      {
+        "id": "l5",
+        "name": "Havells Luna ",
+        "image": "/images/havells-luna-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Havells",
+          "Shape": "Round"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l6",
-      "name": "Halonix Kornet Max+ ",
-      "image": "/images/halonix-kornet-max+-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Halonix",
-        "Shape": "Round"
+      {
+        "id": "l6",
+        "name": "Halonix Kornet Max+ ",
+        "image": "/images/halonix-kornet-max+-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Halonix",
+          "Shape": "Round"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l7",
-      "name": "Halonix Kornet Max+ ",
-      "image": "/images/halonix-kornet-max+-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Halonix",
-        "Shape": "Square"
+      {
+        "id": "l7",
+        "name": "Halonix Kornet Max+ ",
+        "image": "/images/halonix-kornet-max+-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Halonix",
+          "Shape": "Square"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l8",
-      "name": "Philips Astra Sleek",
-      "image": "/images/philip-astrasleek-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Philips",
-        "Shape": "Round"
+      {
+        "id": "l8",
+        "name": "Philips Astra Sleek",
+        "image": "/images/philip-astrasleek-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Philips",
+          "Shape": "Round"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l9",
-      "name": "Philips Astra Sleek",
-      "image": "/images/philip-astrasleek-square.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Philips",
-        "Shape": "Square"
+      {
+        "id": "l9",
+        "name": "Philips Astra Sleek",
+        "image": "/images/philip-astrasleek-square.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Philips",
+          "Shape": "Square"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l10",
-      "name": "Havells Trim Cosmo",
-      "image": "/images/havells-trim-cosmo-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Havells",
-        "Shape": "Round",
-        "Type": "Surface Light"
+      {
+        "id": "l10",
+        "name": "Havells Trim Cosmo",
+        "image": "/images/havells-trim-cosmo-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Havells",
+          "Shape": "Round",
+          "Type": "Surface Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l10",
-      "name": "Havells Trim Cosmo",
-      "image": "/images/havells-trim-cosmo-square.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Havells",
-        "Shape": "Square",
-        "Type": "Surface Light"
+      {
+        "id": "l10",
+        "name": "Havells Trim Cosmo",
+        "image": "/images/havells-trim-cosmo-square.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Havells",
+          "Shape": "Square",
+          "Type": "Surface Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l11",
-      "name": "Surya Dazzle Max",
-      "image": "/images/surya-dazzle-max-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Surya",
-        "Shape": "Round",
-        "Type": "Surface Light"
+      {
+        "id": "l11",
+        "name": "Surya Dazzle Max",
+        "image": "/images/surya-dazzle-max-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Surya",
+          "Shape": "Round",
+          "Type": "Surface Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l12",
-      "name": "Surya Dazzle Max",
-      "image": "/images/surya-dazzle-max-square.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Surya",
-        "Shape": "Square",
-        "Type": "Surface Light"
+      {
+        "id": "l12",
+        "name": "Surya Dazzle Max",
+        "image": "/images/surya-dazzle-max-square.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Surya",
+          "Shape": "Square",
+          "Type": "Surface Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l13",
-      "name": "Halonix Orion",
-      "image": "/images/halonix-orion-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Halonix",
-        "Shape": "Round",
-        "Type": "Surface Light"
+      {
+        "id": "l13",
+        "name": "Halonix Orion",
+        "image": "/images/halonix-orion-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Halonix",
+          "Shape": "Round",
+          "Type": "Surface Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l14",
-      "name": "Halonix Orion",
-      "image": "/images/halonix-orion-surface.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Halonix",
-        "Shape": "Square",
-        "Type": "Surface Light"
+      {
+        "id": "l14",
+        "name": "Halonix Orion",
+        "image": "/images/halonix-orion-surface.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Halonix",
+          "Shape": "Square",
+          "Type": "Surface Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          },
-          {
-            "size": "10W",
-            "price": "50"
-          },
-          {
-            "size": "15W",
-            "price": "60"
-          }
-        ]
-      }
-    },
-    {
-      "id": "l15",
-      "name": "Surya Moon Pro",
-      "image": "/images/surya-moon-pro-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Surya",
-        "Shape": "Round",
-        "Type": "Conceled Light"
+      {
+        "id": "l15",
+        "name": "Surya Moon Pro",
+        "image": "/images/surya-moon-pro-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Surya",
+          "Shape": "Round",
+          "Type": "Conceled Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            }
+          ]
+        }
       },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          }
-        ]
+      {
+        "id": "l16",
+        "name": "Halonix Edge Glow",
+        "image": "/images/halonix-edge-glow-round.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Halonix",
+          "Shape": "Round",
+          "Type": "Conceled Light"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "6W",
+              "price": "40"
+            }
+          ]
+        }
       }
-    },
-    {
-      "id": "l16",
-      "name": "Halonix Edge Glow",
-      "image": "/images/halonix-edge-glow-round.png",
-      "colorImages": {},
-      "specs": {
-        "Brand": "Halonix",
-        "Shape": "Round",
-        "Type": "Conceled Light"
-      },
-      "variants": {
-        "colors": [
-          "Warm White",
-          "Cool White"
-        ],
-        "sizes": [
-          {
-            "size": "6W",
-            "price": "40"
-          }
-        ]
-      }
-    }
-  ],
+    ]
+  },
   "2": [
     {
       "id": "f1",
@@ -1423,6 +1425,30 @@ export const productCatalog = {
             "Black"
           ],
           "sizes": []
+        }
+      }
+    ],
+    4:[ // Lighting products
+      {
+        id:"1",
+        name: "Crystal Chandelier",
+        image: "/images/Sakashchimney.png",
+        specs: {
+          wattage: "60W",
+          dimensions: "24\" x 24\" x 30\"",
+          material: "Crystal and Chrome",
+          bulbType: "E12 LED"
+        }
+      },
+      { id:"2",
+        name: "Wall Sconce",
+        image: "/images/sconce.jpg",
+        price:"2000",
+        specs: {
+          wattage: "40W",
+          dimensions: "6\" x 8\" x 12\"",
+          material: "Brass",
+          bulbType: "E26 LED"
         }
       }
     ],
