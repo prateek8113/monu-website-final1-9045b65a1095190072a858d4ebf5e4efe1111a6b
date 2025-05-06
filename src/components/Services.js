@@ -66,7 +66,7 @@ const Services = () => {
                       src={service.image}
                       loading="lazy"
                       alt={service.title}
-                      style={{ width: '100%', height: '180px', objectFit: 'contain' }} 
+                      style={{ width: '100%', height: '180px', objectFit: 'fit' }} 
                     />
                   )}
                 </CardCover>

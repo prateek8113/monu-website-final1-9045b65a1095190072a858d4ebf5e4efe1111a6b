@@ -51,7 +51,10 @@ const About = () => {
         <div className="container">
           <div className="row py-3 justify-content-center">
             <div className="col-lg-8 px-3">
-              <p className="lead mb-1" style={{ fontSize: "28px" }}>
+              <p
+                className="lead mb-1"
+                style={{ fontSize: "28px", textAlign: "justify" }}
+              >
                 Welcome to Monu Electricals, your one-stop destination for all
                 your electrical needs. We are a family-owned business with over 20
                 years of experience in providing quality products and services to
