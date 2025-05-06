@@ -520,6 +520,257 @@ export const productCatalog = {
           ]
         }
       }
+    ],
+    "ledbulbs":[
+      {
+        "id": "lb1",
+        "name": "Halonix Astron Plus",
+        "image": "/images/halonix-astron-plus.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Halonix"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "9W",
+              "price": "40"
+            },
+            {
+              "size": "12W",
+              "price": "40"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lb2",
+        "name": "Surya Neo Max D",
+        "image": "/images/surya-neo-maxx.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Surya"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "9W",
+              "price": "40"
+            },
+            {
+              "size": "10W",
+              "price": "50"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lb3",
+        "name": "Panasonic Led Bulb",
+        "image": "/images/panasonic-led.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Panasonic"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "9W",
+              "price": "40"
+            },
+            {
+              "size": "15W",
+              "price": "60"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lb4",
+        "name": "Halonix Astron Jumbo",
+        "image": "",
+        "colorImages": {
+          "40W-Cool White": "/images/halonix-astron-jumbo-40W.png",
+          "50W-Cool White": "/images/halonix-astron-jumbo.png"
+        },
+        "specs": {
+          "Brand ": "Halonix"
+        },
+        "variants": {
+          "colors": [
+            "40W-Cool White",
+            "50W-Cool White"
+          ],
+          
+        }
+      }
+    ],
+    "ledbatten":[
+      {
+        "id": "lbatten1",
+        "name": "Surya Amaze Metalica",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Surya"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "36W",
+              "price": "500"
+            },
+            {
+              "size": "40W",
+              "price": "600"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lbatten2",
+        "name": "Surya GLine",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Surya"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "20W",
+              "price": "100"
+            },
+            {
+              "size": "22W",
+              "price": "200"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lbatten3",
+        "name": "Bajaj Beam Max",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Bajaj"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "40W",
+              "price": "500"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lbatten4",
+        "name": "Halonix Streak Square",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Halonix"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "20W",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lbatten5",
+        "name": "Halonix Lotus",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Halonix"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "40W",
+              "price": "500"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lbatten6",
+        "name": "Philips Led Batten",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Philips"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "20W",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "lbatten7",
+        "name": "Havells Led Batten",
+        "image": "/images/ledbatten.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Cool White"
+          ],
+          "sizes": [
+            {
+              "size": "20W",
+              "price": "100"
+            },
+            {
+              "size": "25W",
+              "price": "200"
+            }
+          ]
+        }
+      }
     ]
   },
   "2": [
@@ -1428,27 +1679,177 @@ export const productCatalog = {
         }
       }
     ],
-    4:[ // Lighting products
+    6:[ // Lighting products
       {
-        id:"1",
-        name: "Crystal Chandelier",
-        image: "/images/Sakashchimney.png",
-        specs: {
-          wattage: "60W",
-          dimensions: "24\" x 24\" x 30\"",
-          material: "Crystal and Chrome",
-          bulbType: "E12 LED"
+        "id": "vf1",
+        "name": "Surya Beach Air 200mm",
+        "image": "/images/surya-beach-air-200mm.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Surya"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "200mm",
+              "price": "0"
+            }
+          ]
         }
       },
-      { id:"2",
-        name: "Wall Sconce",
-        image: "/images/sconce.jpg",
-        price:"2000",
-        specs: {
-          wattage: "40W",
-          dimensions: "6\" x 8\" x 12\"",
-          material: "Brass",
-          bulbType: "E26 LED"
+      {
+        "id": "vf2",
+        "name": "Crompton Ventilus ",
+        "image": "/images/crompton-ventlius-150mm.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Crompton"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "150mm",
+              "price": "500"
+            }
+          ]
+        }
+      },
+      {
+        "id": "vf3",
+        "name": "Crompton Axial Air",
+        "image": "/images/crompton-axial-air-200mm.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Crompton"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "200mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "vf4",
+        "name": "Anchor Smart Air ",
+        "image": "/images/anchor-smart-air-250mm.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Anchor"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "250mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "vf5",
+        "name": "Anchor Smart Air High Speed",
+        "image": "/images/anchor-smart-air-high-speed-200mm.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Anchor"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "200mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "vf5",
+        "name": "Havells Air Thrill DX",
+        "image": "/images/havells-thrill-air-dx.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "200mm",
+              "price": "100"
+            },
+            {
+              "size": "250mm",
+              "price": "200"
+            }
+          ]
+        }
+      },
+      {
+        "id": "vf5",
+        "name": "Sakash Ventilation Fan",
+        "image": "/images/sakash-venti.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "Sakash"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "200mm",
+              "price": "100"
+            },
+            {
+              "size": "250mm",
+              "price": "200"
+            },
+            {
+              "size": "150mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "vf5",
+        "name": "RR Signature Ventilation Fan",
+        "image": "/images/rr-venti.png",
+        "colorImages": {},
+        "specs": {
+          "Brand ": "RR"
+        },
+        "variants": {
+          "colors": [
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "150mm",
+              "price": "100"
+            }
+          ]
         }
       }
     ],

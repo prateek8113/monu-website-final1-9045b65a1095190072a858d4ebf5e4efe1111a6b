@@ -13,17 +13,17 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 
-
 const LedProduct = () => {
-    const location = useLocation();
-    const categoryKey = location.pathname.split('/').pop(); // e.g., 'ledbulbs'
-  
-    const service = productCatalog[1]; // Since you're hardcoding service 1
-  
-    // Dynamically fetch the products for the current category (e.g., 'ledbulbs' or 'ledbatten')
-    const products = useMemo(() => {
-      return service[categoryKey] || [];  // Access the products based on the category
-    }, [categoryKey, service]);
+  const location = useLocation();
+  const categoryKey = location.pathname.split('/').pop(); // e.g., 'ledbulbs'
+
+  const service = productCatalog[1]; // Since you're hardcoding service 1
+
+  // Dynamically fetch the products for the current category (e.g., 'ledbulbs' or 'ledbatten')
+  const products = useMemo(() => {
+    return service[categoryKey] || [];  // Access the products based on the category
+  }, [categoryKey, service]);
+
   const { addToCart } = useCart();
   const [selectedOptions, setSelectedOptions] = useState({});
 
@@ -102,60 +102,118 @@ const LedProduct = () => {
   };
 
   return (
-    <>
+    <div className="container py-5">
       <Navbar />
-      <div className="container">
-        <h2 className="display-5 mb-3"> {categoryKey.toUpperCase()}</h2>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          {products.map((product) => {
-            const selected = selectedOptions[product.id] || {};
-            const variants = product.variants || { colors: [], sizes: [] };
-            const currentImage = getCurrentImage(product, selected.color);
-            const showPrice = selected.size?.price || variants.sizes?.[0]?.price || product.price || null;
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {products.map((product) => {
+          const selected = selectedOptions[product.id] || {};
+          const variants = product.variants || {};
+          const currentImage = getCurrentImage(product, selected.color);
+          const showPrice = selected.size?.price || product.price;
 
-            return (
-              <div key={product.id} className="col">
-                <Card sx={{ bgcolor: '#343434', height: "100%", boxShadow: "lg" }}>
-                  <CardOverflow>
-                    <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
-                      <img 
-                        src={currentImage} 
-                        alt={product.name} 
-                        loading="lazy" 
-                        style={{ objectFit: "cover" }}
-                      />
-                    </AspectRatio>
-                  </CardOverflow>
-
-                  <CardContent sx={{ color: 'white' }}>
-                    <Typography level="title-md" sx={{ fontSize: "32px", color: 'white', mt: 2 }}>
+          return (
+            <div key={product.id} className="col">
+              <Card sx={{ 
+                height: "100%", 
+                borderRadius: "12px",
+                transition: "all 0.3s",
+                "&:hover": {
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                  transform: "translateY(-5px)"
+                },
+                display: "flex",
+                flexDirection: "column"  // Important for keeping content below image
+              }}>
+                {/* Image Section */}
+                <CardOverflow>
+                  <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
+                    <img 
+                      src={currentImage} 
+                      alt={product.name} 
+                      loading="lazy" 
+                      style={{ 
+                        objectFit: "cover",
+                        transition: "transform 0.5s",
+                        "&:hover": {
+                          transform: "scale(1.05)"
+                        }
+                      }}
+                    />
+                  </AspectRatio>
+                </CardOverflow>
+                
+                {/* Container for all text content */}
+                <Box sx={{ 
+                  display: "flex", 
+                  flexDirection: "column",
+                  flex: 1 // Take remaining space
+                }}>
+                  {/* Text Content Section */}
+                  <CardContent sx={{ p: 3, flex: 1 }}>
+                    <Typography 
+                      level="title-md" 
+                      sx={{ 
+                        fontSize: "1.5rem", 
+                        fontWeight: "500", 
+                        fontFamily: "'Inter', sans-serif",
+                        mb: 2,
+                        color: "text.primary" 
+                      }}
+                    >
                       {product.name}
                     </Typography>
-
+                
                     {product.specs && Object.keys(product.specs).length > 0 && (
-                      <Box>
+                      <Box sx={{ mb: 2 }}>
                         {Object.entries(product.specs).map(([key, value]) => (
-                          <Typography key={key} level="body-sm" sx={{ fontSize: "20px", color: 'white', mb: 0.75 }}>
-                            <strong className="text-capitalize">{key}:</strong> {value}
+                          <Typography 
+                            key={key} 
+                            level="body-sm" 
+                            sx={{ 
+                              display: "flex",
+                              fontSize: "0.875rem", 
+                              mb: 0.75,
+                              color: "text.secondary"
+                            }}
+                          >
+                            <Box component="span" sx={{ fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
+                              {key}:
+                            </Box> 
+                            {value}
                           </Typography>
                         ))}
                       </Box>
                     )}
-
+                
                     {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
-                      <Box mt={2} display="flex" flexWrap="wrap" gap={4}>
+                      <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 2 }}>
                         {variants.colors?.length > 0 && (
                           <Box>
-                            <Typography level="body-sm" sx={{ color: 'white', mb: 1 }}>
-                              <strong>Colors:</strong>
+                            <Typography 
+                              level="body-sm" 
+                              sx={{ 
+                                color: "text.secondary", 
+                                fontWeight: "600",
+                                mb: 1 
+                              }}
+                            >
+                              Colors:
                             </Typography>
-                            <Box display="flex" gap={1} flexWrap="wrap">
+                            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                               {variants.colors.map((color, idx) => (
                                 <Button
                                   key={idx}
                                   size="sm"
                                   variant={selected.color === color ? "solid" : "outlined"}
                                   color="primary"
+                                  sx={{ 
+                                    borderRadius: "6px",
+                                    textTransform: "none",
+                                    fontSize: "0.75rem",
+                                    minWidth: "unset",
+                                    px: 1.5,
+                                    py: 0.5
+                                  }}
                                   onClick={() => handleColorChange(product.id, color)}
                                 >
                                   {color}
@@ -164,19 +222,34 @@ const LedProduct = () => {
                             </Box>
                           </Box>
                         )}
-
+                
                         {variants.sizes?.length > 0 && (
                           <Box>
-                            <Typography level="body-sm" sx={{ color: 'white', mb: 1 }}>
-                              <strong>Sizes:</strong>
+                            <Typography 
+                              level="body-sm" 
+                              sx={{ 
+                                color: "text.secondary", 
+                                fontWeight: "600",
+                                mb: 1 
+                              }}
+                            >
+                              Sizes:
                             </Typography>
-                            <Box display="flex" gap={1} flexWrap="wrap">
+                            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
                               {variants.sizes.map((sizeObj, idx) => (
                                 <Button
                                   key={idx}
                                   size="sm"
                                   variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
                                   color="primary"
+                                  sx={{ 
+                                    borderRadius: "6px",
+                                    textTransform: "none",
+                                    fontSize: "0.75rem",
+                                    minWidth: "unset",
+                                    px: 1.5,
+                                    py: 0.5
+                                  }}
                                   onClick={() => handleSizeChange(product.id, sizeObj)}
                                 >
                                   {sizeObj.size}
@@ -187,41 +260,67 @@ const LedProduct = () => {
                         )}
                       </Box>
                     )}
-
+                
                     {showPrice && (
-                      <Typography level="title-lg" mt={2} sx={{ color: 'white', fontWeight: 'bold' }}>
-                        Price-₹{showPrice}
+                      <Typography 
+                        level="title-lg" 
+                        sx={{ 
+                          mt: 2, 
+                          color: "primary.main", 
+                          fontWeight: "700",
+                          fontSize: "1.25rem"
+                        }}
+                      >
+                        ₹{showPrice}
                       </Typography>
                     )}
                   </CardContent>
-
+                
+                  {/* Buttons Section */}
                   <CardOverflow>
-                    <Box display="flex" gap={2} pb={2}>
+                    <Box sx={{ 
+                      display: "flex", 
+                      gap: 1.5, 
+                      p: 2,
+                      backgroundColor: "background.level1"
+                    }}>
                       <Button
                         variant="outlined"
                         color="primary"
                         fullWidth
+                        sx={{
+                          borderRadius: "8px",
+                          fontWeight: "600",
+                          textTransform: "none",
+                          boxShadow: "none"
+                        }}
                         onClick={() => sendWhatsAppMessage(product)}
                       >
                         Enquire
                       </Button>
                       <Button
                         variant="solid"
-                        color="success"
+                        color="primary"
                         fullWidth
+                        sx={{
+                          borderRadius: "8px",
+                          fontWeight: "600",
+                          textTransform: "none",
+                          boxShadow: "none"
+                        }}
                         onClick={() => handleAddToCart(product)}
                       >
                         Add to Cart
                       </Button>
                     </Box>
                   </CardOverflow>
-                </Card>
-              </div>
-            );
-          })}
-        </div>
+                </Box>
+              </Card>
+            </div>
+          );
+        })}
       </div>
-    </>
+    </div>
   );
 };
 
