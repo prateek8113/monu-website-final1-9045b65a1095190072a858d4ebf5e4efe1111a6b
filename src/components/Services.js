@@ -41,23 +41,30 @@ const Services = () => {
             >
               <Card
                 component="li"
-                sx={{ 
+                sx={{
+                  boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
                   height: '100%', 
                   cursor: 'pointer',
                   transition: 'transform 0.2s',
                   '&:hover': {
                     transform: 'scale(1.03)'
-                  } 
+                  },
+                  position: 'relative',
+                  overflow: 'hidden'
                 }}
               >
-                <CardCover>
+                <CardCover sx={{ position: 'relative', height: '200px'}}>
                   {service.type === 'video' ? (
                     <video
                       autoPlay
                       loop
                       muted
                       poster={service.poster || ''}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'scale-down',
+                      }}
                     >
                       <source src={service.video} type="video/mp4" />
                     </video>
@@ -66,11 +73,15 @@ const Services = () => {
                       src={service.image}
                       loading="lazy"
                       alt={service.title}
-                      style={{ width: '100%', height: '180px', objectFit: 'fit' }} 
+                      style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover' 
+                      }} 
                     />
                   )}
                 </CardCover>
-                <CardContent sx={{ mt: { xs: 12, sm: 18 } }}>
+                <CardContent sx={{  }}>
                   <Typography level="body-lg" textColor="black" sx={{ fontWeight: 'lg' }}>
                     {service.title}
                   </Typography>

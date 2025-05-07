@@ -13,6 +13,8 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 
+const DEFAULT_IMAGE = "/images/placeholder-product.png";
+
 const LedProduct = () => {
   const location = useLocation();
   const categoryKey = location.pathname.split('/').pop(); // e.g., 'ledbulbs'
@@ -97,230 +99,244 @@ const LedProduct = () => {
   };
 
   const getCurrentImage = (product, selectedColor) => {
-    if (!selectedColor || !product.colorImages) return product.image;
-    return product.colorImages[selectedColor] || product.image;
+    if (selectedColor && product.colorImages && product.colorImages[selectedColor]) {
+      return product.colorImages[selectedColor];
+    }
+    
+    // Check if the product has a main image
+    if (product.image && product.image !== "") {
+      return product.image;
+    }
+    
+    // Return default placeholder if no valid image is found
+    return DEFAULT_IMAGE;
   };
 
   return (
-    <div className="container py-5">
+    <>
       <Navbar />
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {products.map((product) => {
-          const selected = selectedOptions[product.id] || {};
-          const variants = product.variants || {};
-          const currentImage = getCurrentImage(product, selected.color);
-          const showPrice = selected.size?.price || product.price;
+      <div className="container py-5">
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {products.map((product, index) => {
+            const selected = selectedOptions[product.id] || {};
+            const variants = product.variants || {};
+            const currentImage = getCurrentImage(product, selected.color);
+            const showPrice = selected.size?.price || product.price;
 
-          return (
-            <div key={product.id} className="col">
-              <Card sx={{ 
-                height: "100%", 
-                borderRadius: "12px",
-                transition: "all 0.3s",
-                "&:hover": {
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                  transform: "translateY(-5px)"
-                },
-                display: "flex",
-                flexDirection: "column"  // Important for keeping content below image
-              }}>
-                {/* Image Section */}
-                <CardOverflow>
-                  <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
-                    <img 
-                      src={currentImage} 
-                      alt={product.name} 
-                      loading="lazy" 
-                      style={{ 
-                        objectFit: "cover",
-                        transition: "transform 0.5s",
-                        "&:hover": {
-                          transform: "scale(1.05)"
-                        }
-                      }}
-                    />
-                  </AspectRatio>
-                </CardOverflow>
-                
-                {/* Container for all text content */}
-                <Box sx={{ 
-                  display: "flex", 
-                  flexDirection: "column",
-                  flex: 1 // Take remaining space
+            return (
+              <div key={index} className="col">
+                <Card sx={{ 
+                  height: "100%", 
+                  borderRadius: "12px",
+                  transition: "all 0.3s",
+                  "&:hover": {
+                    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                    transform: "translateY(-5px)"
+                  },
+                  display: "flex",
+                  flexDirection: "column"  // Important for keeping content below image
                 }}>
-                  {/* Text Content Section */}
-                  <CardContent sx={{ p: 3, flex: 1 }}>
-                    <Typography 
-                      level="title-md" 
-                      sx={{ 
-                        fontSize: "1.5rem", 
-                        fontWeight: "500", 
-                        fontFamily: "'Inter', sans-serif",
-                        mb: 2,
-                        color: "text.primary" 
-                      }}
-                    >
-                      {product.name}
-                    </Typography>
-                
-                    {product.specs && Object.keys(product.specs).length > 0 && (
-                      <Box sx={{ mb: 2 }}>
-                        {Object.entries(product.specs).map(([key, value]) => (
-                          <Typography 
-                            key={key} 
-                            level="body-sm" 
-                            sx={{ 
-                              display: "flex",
-                              fontSize: "0.875rem", 
-                              mb: 0.75,
-                              color: "text.secondary"
-                            }}
-                          >
-                            <Box component="span" sx={{ fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                              {key}:
-                            </Box> 
-                            {value}
-                          </Typography>
-                        ))}
-                      </Box>
-                    )}
-                
-                    {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
-                      <Box sx={{ mt: 2, display: "flex", flexWrap: "wrap", gap: 2 }}>
-                        {variants.colors?.length > 0 && (
-                          <Box>
-                            <Typography 
-                              level="body-sm" 
-                              sx={{ 
-                                color: "text.secondary", 
-                                fontWeight: "600",
-                                mb: 1 
-                              }}
-                            >
-                              Colors:
-                            </Typography>
-                            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-                              {variants.colors.map((color, idx) => (
-                                <Button
-                                  key={idx}
-                                  size="sm"
-                                  variant={selected.color === color ? "solid" : "outlined"}
-                                  color="primary"
-                                  sx={{ 
-                                    borderRadius: "6px",
-                                    textTransform: "none",
-                                    fontSize: "0.75rem",
-                                    minWidth: "unset",
-                                    px: 1.5,
-                                    py: 0.5
-                                  }}
-                                  onClick={() => handleColorChange(product.id, color)}
-                                >
-                                  {color}
-                                </Button>
-                              ))}
-                            </Box>
-                          </Box>
-                        )}
-                
-                        {variants.sizes?.length > 0 && (
-                          <Box>
-                            <Typography 
-                              level="body-sm" 
-                              sx={{ 
-                                color: "text.secondary", 
-                                fontWeight: "600",
-                                mb: 1 
-                              }}
-                            >
-                              Sizes:
-                            </Typography>
-                            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-                              {variants.sizes.map((sizeObj, idx) => (
-                                <Button
-                                  key={idx}
-                                  size="sm"
-                                  variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
-                                  color="primary"
-                                  sx={{ 
-                                    borderRadius: "6px",
-                                    textTransform: "none",
-                                    fontSize: "0.75rem",
-                                    minWidth: "unset",
-                                    px: 1.5,
-                                    py: 0.5
-                                  }}
-                                  onClick={() => handleSizeChange(product.id, sizeObj)}
-                                >
-                                  {sizeObj.size}
-                                </Button>
-                              ))}
-                            </Box>
-                          </Box>
-                        )}
-                      </Box>
-                    )}
-                
-                    {showPrice && (
-                      <Typography 
-                        level="title-lg" 
-                        sx={{ 
-                          mt: 2, 
-                          color: "primary.main", 
-                          fontWeight: "700",
-                          fontSize: "1.25rem"
-                        }}
-                      >
-                        ₹{showPrice}
-                      </Typography>
-                    )}
-                  </CardContent>
-                
-                  {/* Buttons Section */}
+                  {/* Image Section */}
                   <CardOverflow>
-                    <Box sx={{ 
-                      display: "flex", 
-                      gap: 1.5, 
-                      p: 2,
-                      backgroundColor: "background.level1"
-                    }}>
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        fullWidth
-                        sx={{
-                          borderRadius: "8px",
-                          fontWeight: "600",
-                          textTransform: "none",
-                          boxShadow: "none"
+                    <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
+                      <img 
+                        src={currentImage} 
+                        alt={product.name} 
+                        loading="lazy" 
+                        style={{ 
+                          objectFit: "cover",
+                          transition: "transform 0.5s",
+                          "&:hover": {
+                            transform: "scale(1.05)"
+                          }
                         }}
-                        onClick={() => sendWhatsAppMessage(product)}
-                      >
-                        Enquire
-                      </Button>
-                      <Button
-                        variant="solid"
-                        color="primary"
-                        fullWidth
-                        sx={{
-                          borderRadius: "8px",
-                          fontWeight: "600",
-                          textTransform: "none",
-                          boxShadow: "none"
-                        }}
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        Add to Cart
-                      </Button>
-                    </Box>
+                      />
+                    </AspectRatio>
                   </CardOverflow>
-                </Box>
-              </Card>
-            </div>
-          );
-        })}
+                  
+                  {/* Container for all text content */}
+                  <Box sx={{ 
+                    display: "flex", 
+                    flexDirection: "column",
+                    flex: 1,// Take remaining space
+                    mt: 1,
+                  }}>
+                    {/* Text Content Section */}
+                    <CardContent sx={{ p: 2, flex: 1 }}>
+                      <Typography 
+                        level="title-md" 
+                        sx={{ 
+                          fontSize: "1.5rem", 
+                          fontWeight: "bold", 
+                          fontFamily: "Helvetica",
+                          color: "text.primary" 
+                        }}
+                      >
+                        {product.name}
+                      </Typography>
+                  
+                      {product.specs && Object.keys(product.specs).length > 0 && (
+                        <Box sx={{}}>
+                          {Object.entries(product.specs).map(([key, value]) => (
+                            <Typography 
+                              key={key} 
+                              level="body-sm" 
+                              sx={{ 
+                                mt: 1,
+                                display: "flex",
+                                fontSize: "20px", 
+                                mb: 0.75,
+                                color: "text.secondary"
+                              }}
+                            >
+                              <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
+                                {key} -
+                              </Box> 
+                              <Box component="span" sx={{ color: "text.secondary", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
+                                {value}
+                              </Box> 
+                            </Typography>
+                          ))}
+                        </Box>
+                      )}
+                  
+                      {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
+                        <Box sx={{ mt: 1, display: "flex", flexWrap: "wrap", gap: 2 }}>
+                          {variants.colors?.length > 0 && (
+                            <Box>
+                              <Typography 
+                                level="body-sm" 
+                                sx={{ 
+                                  color: "text.secondary", 
+                                  fontWeight: "600",
+                                  fontSize: "20px",
+                                  mb: 1 
+                                }}
+                              >
+                                Colors
+                              </Typography>
+                              <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                                {variants.colors.map((color, idx) => (
+                                  <Button
+                                    key={idx}
+                                    size="sm"
+                                    variant={selected.color === color ? "solid" : "outlined"}
+                                    color="primary"
+                                    sx={{ 
+                                      borderRadius: "6px",
+                                      textTransform: "none",
+                                      fontSize: "1rem",
+                                      minWidth: "unset",
+                                      px: 1.5,
+                                      py: 0.5
+                                    }}
+                                    onClick={() => handleColorChange(product.id, color)}
+                                  >
+                                    {color}
+                                  </Button>
+                                ))}
+                              </Box>
+                            </Box>
+                          )}
+                  
+                          {variants.sizes?.length > 0 && (
+                            <Box>
+                              <Typography 
+                                level="body-sm" 
+                                sx={{ 
+                                  color: "text.secondary", 
+                                  fontWeight: "600",
+                                  fontSize: "20px",
+                                  mb: 1 
+                                }}
+                              >
+                                Sizes
+                              </Typography>
+                              <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                                {variants.sizes.map((sizeObj, idx) => (
+                                  <Button
+                                    key={idx}
+                                    size="sm"
+                                    variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
+                                    color="primary"
+                                    sx={{ 
+                                      borderRadius: "6px",
+                                      textTransform: "none",
+                                      fontSize: "1rem",
+                                      minWidth: "unset",
+                                      px: 1.5,
+                                      py: 0.5
+                                    }}
+                                    onClick={() => handleSizeChange(product.id, sizeObj)}
+                                  >
+                                    {sizeObj.size}
+                                  </Button>
+                                ))}
+                              </Box>
+                            </Box>
+                          )}
+                        </Box>
+                      )}
+                  
+                      {showPrice && (
+                        <Typography 
+                          level="title-lg" 
+                          sx={{ 
+                            mt: 1, 
+                            color: "primary.main", 
+                            fontWeight: "700",
+                            fontSize: "1.5rem"
+                          }}
+                        >
+                          Price-₹{showPrice}
+                        </Typography>
+                      )}
+                    </CardContent>
+                  
+                    {/* Buttons Section */}
+                    <CardOverflow>
+                      <Box sx={{ 
+                        display: "flex", 
+                        gap: 1.5, 
+                      }}>
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          fullWidth
+                          sx={{
+                            borderRadius: "8px",
+                            fontWeight: "600",
+                            textTransform: "none",
+                            boxShadow: "none"
+                          }}
+                          onClick={() => sendWhatsAppMessage(product)}
+                        >
+                          Enquire
+                        </Button>
+                        <Button
+                          variant="solid"
+                          color="primary"
+                          fullWidth
+                          sx={{
+                            borderRadius: "8px",
+                            fontWeight: "600",
+                            textTransform: "none",
+                            boxShadow: "none"
+                          }}
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          Add to Cart
+                        </Button>
+                      </Box>
+                    </CardOverflow>
+                  </Box>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
