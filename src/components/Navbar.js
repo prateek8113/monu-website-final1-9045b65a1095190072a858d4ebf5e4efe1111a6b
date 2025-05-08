@@ -29,11 +29,11 @@ const Navbar = () => {
       <nav className="navbar navbar-light py-2 w-100">
         <div className="container-fluid">
           {/* Logo with left padding */}
-          <Link to="/" className="navbar-brand m-0 ps-4">
+          <Link to="/" className="navbar-brand m-0 ps-2">
             <img 
               src="/images/Monu-logo.svg" 
               alt="Monu Brand Logo" 
-              style={{ maxHeight: '35px' }} 
+              style={{ maxHeight: '70px' }} 
             />
           </Link>
           

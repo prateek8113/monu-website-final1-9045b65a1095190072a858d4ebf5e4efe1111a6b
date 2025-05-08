@@ -116,7 +116,8 @@ const LedProduct = () => {
     <>
       <Navbar />
       <div className="container py-5">
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {/* Modified row class to have 2 columns on mobile screens */}
+        <div className="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-3 g-md-4">
           {products.map((product, index) => {
             const selected = selectedOptions[product.id] || {};
             const variants = product.variants || {};
@@ -138,7 +139,7 @@ const LedProduct = () => {
                 }}>
                   {/* Image Section */}
                   <CardOverflow>
-                    <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
+                    <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: { xs: 180, sm: 230, md: 280 } }}>
                       <img 
                         src={currentImage} 
                         alt={product.name} 
@@ -162,11 +163,11 @@ const LedProduct = () => {
                     mt: 1,
                   }}>
                     {/* Text Content Section */}
-                    <CardContent sx={{ p: 2, flex: 1 }}>
+                    <CardContent sx={{ p: { xs: 1, sm: 1.5, md: 2 }, flex: 1 }}>
                       <Typography 
                         level="title-md" 
                         sx={{ 
-                          fontSize: "1.5rem", 
+                          fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" }, 
                           fontWeight: "bold", 
                           fontFamily: "Helvetica",
                           color: "text.primary" 
@@ -184,7 +185,7 @@ const LedProduct = () => {
                               sx={{ 
                                 mt: 1,
                                 display: "flex",
-                                fontSize: "20px", 
+                                fontSize: { xs: "14px", sm: "16px", md: "20px" }, 
                                 mb: 0.75,
                                 color: "text.secondary"
                               }}
@@ -201,7 +202,7 @@ const LedProduct = () => {
                       )}
                   
                       {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
-                        <Box sx={{ mt: 1, display: "flex", flexWrap: "wrap", gap: 2 }}>
+                        <Box sx={{ mt: 1, display: "flex", flexDirection: { xs: "column", sm: "row" }, flexWrap: "wrap", gap: { xs: 1, md: 2 } }}>
                           {variants.colors?.length > 0 && (
                             <Box>
                               <Typography 
@@ -209,7 +210,7 @@ const LedProduct = () => {
                                 sx={{ 
                                   color: "text.secondary", 
                                   fontWeight: "600",
-                                  fontSize: "20px",
+                                  fontSize: { xs: "14px", sm: "16px", md: "20px" },
                                   mb: 1 
                                 }}
                               >
@@ -225,9 +226,9 @@ const LedProduct = () => {
                                     sx={{ 
                                       borderRadius: "6px",
                                       textTransform: "none",
-                                      fontSize: "1rem",
+                                      fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
                                       minWidth: "unset",
-                                      px: 1.5,
+                                      px: { xs: 1, md: 1.5 },
                                       py: 0.5
                                     }}
                                     onClick={() => handleColorChange(product.id, color)}
@@ -246,7 +247,7 @@ const LedProduct = () => {
                                 sx={{ 
                                   color: "text.secondary", 
                                   fontWeight: "600",
-                                  fontSize: "20px",
+                                  fontSize: { xs: "14px", sm: "16px", md: "20px" },
                                   mb: 1 
                                 }}
                               >
@@ -262,9 +263,9 @@ const LedProduct = () => {
                                     sx={{ 
                                       borderRadius: "6px",
                                       textTransform: "none",
-                                      fontSize: "1rem",
+                                      fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
                                       minWidth: "unset",
-                                      px: 1.5,
+                                      px: { xs: 1, md: 1.5 },
                                       py: 0.5
                                     }}
                                     onClick={() => handleSizeChange(product.id, sizeObj)}
@@ -285,7 +286,7 @@ const LedProduct = () => {
                             mt: 1, 
                             color: "primary.main", 
                             fontWeight: "700",
-                            fontSize: "1.5rem"
+                            fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" }
                           }}
                         >
                           Price-₹{showPrice}
@@ -297,7 +298,9 @@ const LedProduct = () => {
                     <CardOverflow>
                       <Box sx={{ 
                         display: "flex", 
-                        gap: 1.5, 
+                        gap: { xs: 0.5, sm: 1, md: 1.5 }, 
+                        flexDirection: { xs: "column", sm: "row" },
+                        p: { xs: 1, sm: 1.5 }
                       }}>
                         <Button
                           variant="outlined"
@@ -307,7 +310,9 @@ const LedProduct = () => {
                             borderRadius: "8px",
                             fontWeight: "600",
                             textTransform: "none",
-                            boxShadow: "none"
+                            boxShadow: "none",
+                            fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
+                            py: { xs: 0.5, md: 1 }
                           }}
                           onClick={() => sendWhatsAppMessage(product)}
                         >
@@ -321,7 +326,9 @@ const LedProduct = () => {
                             borderRadius: "8px",
                             fontWeight: "600",
                             textTransform: "none",
-                            boxShadow: "none"
+                            boxShadow: "none",
+                            fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
+                            py: { xs: 0.5, md: 1 }
                           }}
                           onClick={() => handleAddToCart(product)}
                         >

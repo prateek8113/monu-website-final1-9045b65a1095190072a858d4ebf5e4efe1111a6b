@@ -15,7 +15,7 @@ const Footer = () => {
           <img
             src="/images/Monu-logo.svg"
             className="d-block"
-            style={{ maxHeight: "200px", width: "auto" }}
+            
             alt="Monu Logo"
           />
         </div>

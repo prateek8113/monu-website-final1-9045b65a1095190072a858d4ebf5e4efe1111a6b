@@ -1858,16 +1858,16 @@ export const productCatalog = {
 // You can also export the services data
 export const services = [
   {
-    title: "Designer Lighting",
-    image: "/images/lighting.png",
+    title: "Chandeliers",
+    image: "/images/Designer-light-service.png",
   },
   {
     title: "Lights",
-    image: "/images/celing-light.png",
+    image: "/images/light-service.png",
   },
   {
     title: "Fans",
-    image: "images/fan-cover (1).png",
+    image: "/images/fan-service.png",
   },
   {
     title: "switches",
@@ -1879,7 +1879,7 @@ export const services = [
   },
   {
     title: "Coolers",
-    image: "/images/cooler-cover.png",
+    image: "/images/cooler-service.png",
   },
   {
     title: "Exhaust Fans",
