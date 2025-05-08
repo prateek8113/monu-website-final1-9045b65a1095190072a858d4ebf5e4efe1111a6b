@@ -56,7 +56,16 @@ const ServiceDetail = () => {
   }, [products]);
 
   if (!service) {
-    return <h2 className="text-center mt-4">Service not found!</h2>;
+    return (
+      <>
+        <Navbar />
+        <Box sx={{ width: "95%", maxWidth: "1600px", mx: "auto", py: 3 }}>
+          <Typography level="h2" sx={{ textAlign: "center", mt: 4 }}>
+            Service not found!
+          </Typography>
+        </Box>
+      </>
+    );
   }
 
   const handleSizeChange = (productId, sizeObj) => {
@@ -128,41 +137,67 @@ const ServiceDetail = () => {
 
   return (
     <>
-    <Navbar />
-    <div className="container py-5">
-      
-      <div className="row">
-        <div className="col-12">
-          <h2 className="display-5 mb-4 fs-2 fs-md-3 fs-lg-5">
-            {brandName ? `${service.title} - ${brandName}` : service.title}
-          </h2>
-        </div>
-      </div>
+      <Navbar />
+      {/* Replaced Bootstrap container with custom Box styling */}
+      <Box 
+        sx={{ 
+          width: "95%", 
+          maxWidth: "1800px", 
+          mx: "auto", 
+          py: 3 
+        }}
+      >
+        {/* Page title */}
+        <Typography 
+          level="h1" 
+          sx={{ 
+            fontSize: { xs: "2rem", md: "2.5rem" }, 
+            mb: 4, 
+            fontWeight: "bold" 
+          }}
+        >
+          {brandName ? `${service.title} - ${brandName}` : service.title}
+        </Typography>
+        
+        {/* Product grid */}
+        <Box 
+          sx={{ 
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "1fr",                    // One column on extra small screens
+              sm: "repeat(2, 1fr)",         // Two columns on small screens
+              md: "repeat(2, 1fr)",         // Two columns on medium screens
+              lg: "repeat(3, 1fr)",         // Three columns on large screens
+              xl: "repeat(4, 1fr)"          // Four columns on extra large screens
+            },
+            gap: 4                          // Increased gap between cards
+          }}
+        >
+          {products.map((product, index) => {
+            const selected = selectedOptions[product.id] || {};
+            const variants = product.variants || {};
+            const currentImage = getCurrentImage(product, selected.color);
+            const showPrice = selected.size?.price || product.price;
 
-      {/* Modified row class to have 2 columns on mobile screens */}
-      <div className="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-3 g-md-4">
-        {products.map((product, index) => {
-          const selected = selectedOptions[product.id] || {};
-          const variants = product.variants || {};
-          const currentImage = getCurrentImage(product, selected.color);
-          const showPrice = selected.size?.price || product.price;
-
-          return (
-            <div key={index} className="col">
-              <Card sx={{ 
-                height: "100%", 
-                borderRadius: "12px",
-                transition: "all 0.3s",
-                "&:hover": {
+            return (
+              <Card 
+                key={index}
+                sx={{ 
+                  height: "100%", 
+                  borderRadius: "12px",
                   boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                  transform: "translateY(-5px)"
-                },
-                display: "flex",
-                flexDirection: "column"  // Important for keeping content below image
-              }}>
+                  transition: "all 0.3s",
+                  "&:hover": {
+                    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                    transform: "translateY(-5px)"
+                  },
+                  display: "flex",
+                  flexDirection: "column"
+                }}
+              >
                 {/* Image Section */}
                 <CardOverflow>
-                  <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: { xs: 180, sm: 230, md: 280 } }}>
+                  <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
                     <img 
                       src={currentImage} 
                       alt={product.name} 
@@ -182,15 +217,15 @@ const ServiceDetail = () => {
                 <Box sx={{ 
                   display: "flex", 
                   flexDirection: "column",
-                  flex: 1,// Take remaining space
+                  flex: 1,
                   mt: 1,
                 }}>
                   {/* Text Content Section */}
-                  <CardContent sx={{ p: { xs: 1, sm: 1.5, md: 2 }, flex: 1 }}>
+                  <CardContent sx={{ p: 2, flex: 1 }}>
                     <Typography 
                       level="title-md" 
                       sx={{ 
-                        fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" }, 
+                        fontSize: "1.5rem", 
                         fontWeight: "bold", 
                         fontFamily: "Helvetica",
                         color: "text.primary" 
@@ -200,7 +235,7 @@ const ServiceDetail = () => {
                     </Typography>
                 
                     {product.specs && Object.keys(product.specs).length > 0 && (
-                      <Box sx={{ }}>
+                      <Box sx={{}}>
                         {Object.entries(product.specs).map(([key, value]) => (
                           <Typography 
                             key={key} 
@@ -208,7 +243,7 @@ const ServiceDetail = () => {
                             sx={{ 
                               mt: 1,
                               display: "flex",
-                              fontSize: { xs: "14px", sm: "16px", md: "20px" }, 
+                              fontSize: "20px", 
                               mb: 0.75,
                               color: "text.secondary"
                             }}
@@ -217,7 +252,7 @@ const ServiceDetail = () => {
                               {key} -
                             </Box> 
                             <Box component="span" sx={{ color: "text.secondary", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                            {value}
+                              {value}
                             </Box> 
                           </Typography>
                         ))}
@@ -225,7 +260,7 @@ const ServiceDetail = () => {
                     )}
                 
                     {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
-                      <Box sx={{ mt: 1, display: "flex", flexDirection: { xs: "column", sm: "row" }, flexWrap: "wrap", gap: { xs: 1, md: 2 } }}>
+                      <Box sx={{ mt: 1, display: "flex", flexWrap: "wrap", gap: 2 }}>
                         {variants.colors?.length > 0 && (
                           <Box>
                             <Typography 
@@ -233,7 +268,7 @@ const ServiceDetail = () => {
                               sx={{ 
                                 color: "text.secondary", 
                                 fontWeight: "600",
-                                fontSize: { xs: "14px", sm: "16px", md: "20px" },
+                                fontSize: "20px",
                                 mb: 1 
                               }}
                             >
@@ -249,9 +284,9 @@ const ServiceDetail = () => {
                                   sx={{ 
                                     borderRadius: "6px",
                                     textTransform: "none",
-                                    fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
+                                    fontSize: "1rem",
                                     minWidth: "unset",
-                                    px: { xs: 1, md: 1.5 },
+                                    px: 1.5,
                                     py: 0.5
                                   }}
                                   onClick={() => handleColorChange(product.id, color)}
@@ -270,7 +305,7 @@ const ServiceDetail = () => {
                               sx={{ 
                                 color: "text.secondary", 
                                 fontWeight: "600",
-                                fontSize: { xs: "14px", sm: "16px", md: "20px" },
+                                fontSize: "20px",
                                 mb: 1 
                               }}
                             >
@@ -286,9 +321,9 @@ const ServiceDetail = () => {
                                   sx={{ 
                                     borderRadius: "6px",
                                     textTransform: "none",
-                                    fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
+                                    fontSize: "1rem",
                                     minWidth: "unset",
-                                    px: { xs: 1, md: 1.5 },
+                                    px: 1.5,
                                     py: 0.5
                                   }}
                                   onClick={() => handleSizeChange(product.id, sizeObj)}
@@ -309,7 +344,7 @@ const ServiceDetail = () => {
                           mt: 1, 
                           color: "primary.main", 
                           fontWeight: "700",
-                          fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" }
+                          fontSize: "1.5rem"
                         }}
                       >
                         Price-₹{showPrice}
@@ -321,9 +356,8 @@ const ServiceDetail = () => {
                   <CardOverflow>
                     <Box sx={{ 
                       display: "flex", 
-                      gap: { xs: 0.5, sm: 1, md: 1.5 }, 
-                      flexDirection: { xs: "column", sm: "row" },
-                      p: { xs: 1, sm: 1.5 }                     
+                      gap: 1.5,
+                      p: 1
                     }}>
                       <Button
                         variant="outlined"
@@ -333,9 +367,7 @@ const ServiceDetail = () => {
                           borderRadius: "8px",
                           fontWeight: "600",
                           textTransform: "none",
-                          boxShadow: "none",
-                          fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
-                          py: { xs: 0.5, md: 1 }
+                          boxShadow: "none"
                         }}
                         onClick={() => sendWhatsAppMessage(product)}
                       >
@@ -349,9 +381,7 @@ const ServiceDetail = () => {
                           borderRadius: "8px",
                           fontWeight: "600",
                           textTransform: "none",
-                          boxShadow: "none",
-                          fontSize: { xs: "0.75rem", sm: "0.85rem", md: "1rem" },
-                          py: { xs: 0.5, md: 1 }
+                          boxShadow: "none"
                         }}
                         onClick={() => handleAddToCart(product)}
                       >
@@ -361,11 +391,10 @@ const ServiceDetail = () => {
                   </CardOverflow>
                 </Box>
               </Card>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+            );
+          })}
+        </Box>
+      </Box>
     </>
   );
 };

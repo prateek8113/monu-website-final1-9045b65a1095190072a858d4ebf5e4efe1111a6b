@@ -72,14 +72,17 @@ const Services = () => {
           ))}
         </Box>
       ) : (
-        // Desktop layout - flexible wrap
+        // Desktop layout - 2 rows with reduced column gap
         <Box
           component="ul"
           sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 2,
-            justifyContent: 'center',
+            display: 'grid',
+            gridTemplateRows: 'repeat(2, auto)', // Two rows
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', // Dynamic columns
+            gridAutoFlow: 'column', // Fill columns first
+            rowGap: 2, // Row gap remains 8px
+            columnGap: 0.2, // Reduced column gap to 4px
+            justifyItems: 'center',
             listStyle: 'none',
             maxWidth: '100%',
             padding: 0,
@@ -90,15 +93,14 @@ const Services = () => {
             const linkTo = index === 3 ? `/services/${index}/brands` : `/services/${index}`;
             
             return (
-                              <Link
+              <Link
                 to={linkTo}
                 key={index}
                 style={{
                   textDecoration: 'none',
                   minWidth: 250,
                   maxWidth: 300,
-                  flexGrow: 1,
-                  // Maintain aspect ratio for desktop
+                  width: '100%',
                   aspectRatio: '1/1',
                 }}
               >
@@ -117,7 +119,7 @@ const ServiceCard = ({ service }) => (
   <Card
     component="li"
     sx={{
-      boxShadow:" 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
       cursor: 'pointer',
       transition: 'transform 0.2s',
       '&:hover': {
