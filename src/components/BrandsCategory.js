@@ -6,6 +6,7 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import Navbar from './Navbar';
+import Footer from "./Footer";
 
 const brandsList = [
   {
@@ -85,6 +86,7 @@ const BrandsCategory = () => {
           ))}
         </Box>
       </Box>
+      <Footer/>
     </>
   );
 };

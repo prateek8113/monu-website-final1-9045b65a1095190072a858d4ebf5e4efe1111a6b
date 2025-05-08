@@ -5,6 +5,7 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import CardCover from '@mui/joy/CardCover';
+import Footer from "./Footer";
 
 const lightingCategories = [
   {
@@ -31,7 +32,8 @@ const lightingCategories = [
 
 const LightCategory = () => {
   return (
-    <Box sx={{ px: 2, py: 5 }}>
+    <>
+    <Box sx={{ px: 0, py: 5 }}>
       <Typography level="h2" textAlign="center" sx={{ mb: 4 }}>
         Lighting Categories
       </Typography>
@@ -86,7 +88,11 @@ const LightCategory = () => {
           </Link>
         ))}
       </Box>
+      
     </Box>
+    <Footer/>
+    </>
+    
   );
 };
 

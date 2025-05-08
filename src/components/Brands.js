@@ -56,6 +56,7 @@ const Brands = () => {
           </Slider>
         </div>
       </section>
+      
     </div>
   )
 }

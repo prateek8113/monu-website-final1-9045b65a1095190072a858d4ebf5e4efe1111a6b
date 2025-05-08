@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { productCatalog } from './productCatlog';
 import { useCart } from './Addtocart';
 import Navbar from './Navbar';
+import Footer from "./Footer";
 
 // MUI Joy imports
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -359,6 +360,7 @@ const LedProduct = () => {
           })}
         </Box>
       </Box>
+      <Footer/>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { services, productCatalog } from "./productCatlog"; // Adjust path as needed
 import { useCart } from "./Addtocart";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 // MUI Joy imports
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -395,6 +396,7 @@ const ServiceDetail = () => {
           })}
         </Box>
       </Box>
+      <Footer/>
     </>
   );
 };
