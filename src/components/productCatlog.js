@@ -771,6 +771,51 @@ export const productCatalog = {
           ]
         }
       }
+    ],
+    "spotlight":[
+      {
+        "id": "sl1",
+        "name": "Reo Flare",
+        "image": "/images/Reo-flare.png",
+        "colorImages": {},
+        "specs": {
+          "Brand":"Havells"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "2W",
+              "price": "200"
+            }
+          ]
+        }
+      },
+      {
+        "id": "sl2",
+        "name": "Surya Prime Spot",
+        "image": "/images/surya-prime-spot.png",
+        "colorImages": {},
+        "specs": {
+           "Brand":"Surya"
+        },
+        "variants": {
+          "colors": [
+            "Warm White",
+            "White"
+          ],
+          "sizes": [
+            {
+              "size": "2W",
+              "price": "200"
+            }
+          ]
+        }
+      }
+
     ]
   },
   "2": [
@@ -1850,6 +1895,72 @@ export const productCatalog = {
               "price": "100"
             }
           ]
+        }
+      }
+    ],
+    "7": [
+      {
+        "id": "c1",
+        "name": "Glen Auto Clean Chimney",
+        "image": "/images/Glen-automatic-chimney.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Glen",
+          "Type": "Auto Clean"
+        },
+        "variants": {
+          "colors": [
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "c2",
+        "name": "Glen  Chimney",
+        "image": "/images/glen-manual-chimney.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Glen",
+          "Type": "Manual"
+        },
+        "variants": {
+          "colors": [
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "c3",
+        "name": "Inalsa Chimney",
+        "image": "/images/inalsa-manual-chimney.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Inalsa",
+          "Type": "Manual"
+        },
+        "variants": {
+          "colors": [
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "c4",
+        "name": "Sakash Auto Clean Chimney",
+        "image": "/images/sakash-automatic-chimney.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Sakash",
+          "Type": "Auto Clean"
+        },
+        "variants": {
+          "colors": [
+            "Black"
+          ],
+          "sizes": []
         }
       }
     ],

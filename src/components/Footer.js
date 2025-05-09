@@ -59,7 +59,7 @@ const Footer = () => {
               <Mail color="skyblue" />
               <Typography color="white">monuelectricals@gmail.com</Typography>
             </Stack>
-            <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            <Stack direction="row" spacing={2} sx={{ alignItems: "" }}>
               <MapPin color="skyblue" />
               <Typography color="white">
                 Head Office: Sec-10, Vasundhara, Ghaziabad<br />
@@ -71,7 +71,7 @@ const Footer = () => {
       </Grid>
 
       {/* Footer Bottom */}
-      <Divider sx={{ my: 4, borderColor: "neutral.700" }} />
+      <Divider sx={{ my: 4, borderColor: "neutral.400" }} />
       <Typography level="body-sm" textAlign="center" color="neutral.400">
         © {new Date().getFullYear()} Monu Electricals. All rights reserved.
       </Typography>

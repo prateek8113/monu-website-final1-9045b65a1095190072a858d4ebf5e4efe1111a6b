@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
-import CardCover from '@mui/joy/CardCover';
-import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import { services } from './productCatlog';
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -80,8 +78,8 @@ const Services = () => {
             gridTemplateRows: 'repeat(2, auto)', // Two rows
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', // Dynamic columns
             gridAutoFlow: 'column', // Fill columns first
-            rowGap: 2, // Row gap remains 8px
-            columnGap: 0.2, // Reduced column gap to 4px
+            rowGap: 2, // Row gap
+            columnGap: 0.2, // Reduced column gap
             justifyItems: 'center',
             listStyle: 'none',
             maxWidth: '100%',
@@ -114,7 +112,7 @@ const Services = () => {
   );
 };
 
-// Extracted ServiceCard component to avoid code duplication
+// Simplified ServiceCard component with clear separation between image and text
 const ServiceCard = ({ service }) => (
   <Card
     component="li"
@@ -125,56 +123,63 @@ const ServiceCard = ({ service }) => (
       '&:hover': {
         transform: 'scale(1.03)'
       },
-      position: 'relative',
-      overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      // Make the card a square
       aspectRatio: '1/1',
       width: '100%',
+      padding: 0,
+      overflow: 'hidden',
     }}
   >
-    <CardCover sx={{ 
-      position: 'relative', 
-      height: '75%', // Give image 75% of card height
-    }}>
-      {service.type === 'video' ? (
-        <video
-          autoPlay
-          loop
-          muted
-          poster={service.poster || ''}
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover', // Changed to cover to maintain square aspect
-          }}
-        >
-          <source src={service.video} type="video/mp4" />
-        </video>
-      ) : (
-        <img
-          src={service.image}
-          loading="lazy"
-          alt={service.title}
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'contain' 
-          }} 
-        />
-      )}
-    </CardCover>
-    <CardContent sx={{ 
-      display: 'flex', 
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '25%', // Give text 25% of card height
-    }}>
-      <Typography level="body-lg" textColor="black" sx={{ fontWeight: 'lg' }}>
+    {/* Image Container - 75% of card height */}
+    <Box 
+      sx={{
+        height: '75%',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        backgroundColor: '#f5f5f5',
+      }}
+    >
+      <img
+        src={service.image}
+        loading="lazy"
+        alt={service.title}
+        style={{ 
+          maxWidth: '100%', 
+          maxHeight: '100%', 
+          objectFit: 'contain' 
+        }} 
+      />
+    </Box>
+    
+    {/* Text Container - 25% of card height with solid background */}
+    <Box 
+      sx={{
+        height: '25%',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        padding: 1,
+      }}
+    >
+      <Typography 
+        level="body-lg" 
+        textColor="black" 
+        sx={{ 
+          fontWeight: 'lg',
+          textAlign: 'center',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
         {service.title}
       </Typography>
-    </CardContent>
+    </Box>
   </Card>
 );
 
