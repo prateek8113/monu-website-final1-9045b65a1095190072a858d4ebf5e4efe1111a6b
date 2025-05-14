@@ -1188,7 +1188,7 @@ export const productCatalog = {
     }
       
     ],
-  "3_havells": [
+  "3_reo": [
       {
         "id": "s1",
         "name": "Reo 6A Switch",
@@ -1721,6 +1721,852 @@ export const productCatalog = {
             "Black"
           ],
           "sizes": []
+        }
+      }
+    ],
+    "3_havells": [
+      {
+        "id": "s28",
+        "name": "Havells Adiva 6A Switch",
+        "image": "",
+        "colorImages": {
+          "Black":"/images/havells-adiva-8m-switch6a.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s29",
+        "name": "Havells Adiva 16A Switch",
+        "image": "",
+        "colorImages": {
+          "Black":"/images/havells-adiva-8m-switch6a.png",
+          
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+          
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s30",
+        "name": "Havells Adiva 6A Socket",
+        "image": "",
+        "colorImages": {
+          "Black":"/images/havells-adiva-8m-socket6a.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s31",
+        "name": "Havells Adiva 16A Socket",
+        "image": "",
+        "colorImages": {
+          "White": "/images/reo-16asocket-white.png",
+          "Black": "/images/reo-16asocket-black.png"
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s32",
+        "name": "Havells Adiva Bell Push 1M",
+        "image": "",
+        "colorImages": {
+          
+        },
+        "specs": {
+          "Brand Name":"Havells"
+        },
+        "variants": {
+          "colors": [
+           
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s33",
+        "name": "Havells Adiva Bell Push 2M",
+        "image": "",
+        "colorImages": {
+          
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s34",
+        "name": "Havells Adiva Fan Indicator 1M",
+        "image": "",
+        "colorImages": {
+           
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+           
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s35",
+        "name": "Havells Adiva Fan Indicator 2M",
+        "image": "",
+        "colorImages": {
+          
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+        
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "36",
+        "name": "Havells Adiva 6A 2-Way-Switch",
+        "image": "",
+        "colorImages": {
+          
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s37",
+        "name": "Havells Adiva Blank",
+        "image": "",
+        "colorImages": {
+          
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s38",
+        "name": "Havells Adiva 2M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-2m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s39",
+        "name": "Havells Adiva 1M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-1m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s40",
+        "name": "Havells Adiva 3M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-3m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s41",
+        "name": "Havells Adiva 4M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-4m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s42",
+        "name": "Havells Adiva 6M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-6m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s43",
+        "name": "Havells Adiva 8M(V) plate",
+        "image": "",
+        "colorImages": {
+         Black: "/images/havells-adiva-8m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s44",
+        "name": "Havells Adiva 8M(H) plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-8mh-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s45",
+        "name": "Havells Adiva 12M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-12m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s46",
+        "name": "Havells Adiva 16M plate",
+        "image": "",
+        "colorImages": {
+         Black: "/images/havells-adiva-16m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      },
+      {
+        "id": "s47",
+        "name": "Havells Adiva 18M plate",
+        "image": "",
+        "colorImages": {
+          Black: "/images/havells-adiva-18m-plate-black.png",
+        },
+        "specs": {
+          "Brand Name": "Havells"
+        },
+        "variants": {
+          "colors": [
+            
+            "Black"
+          ],
+          "sizes": []
+        }
+      }
+    ],
+    4:[
+      {
+        "id": "w1",
+        "name": "Havells Life Line",
+        "image": "",
+        "colorImages": {
+          "Red": "/images/havells-wire-red.png",
+          "Blue": "/images/havells-wire-blue.png",
+          "Black": "/images/havells-wire-black.png",
+          "Green": "/images/havells-wire-green.png",
+        },
+        "specs": {
+          "Brand": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": ".75mm",
+              "price": "100"
+            },
+            {
+              "size": "1mm",
+              "price": "0"
+            },
+            {
+              "size": "1.5mm",
+              "price": "0"
+            },
+            {
+              "size": "2.5mm",
+              "price": "0"
+            },
+            {
+              "size": "4mm",
+              "price": "0"
+            },
+            {
+              "size": "6mm",
+              "price": "0"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w2",
+        "name": "Havells Life Line",
+        "image": "",
+        "colorImages": {
+          "Red": "/images/havells-wire-red.png",
+          "Blue": "/images/havells-wire-blue.png",
+          "Black": "/images/havells-wire-black.png",
+          "Green": "/images/havells-wire-green.png",
+        },
+        "specs": {
+          "Brand": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "1mm",
+              "price": "0"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w3",
+        "name": "Havells Life Line",
+        "image": "",
+        "colorImages": {
+          "Red": "/images/havells-wire-red.png",
+          "Blue": "/images/havells-wire-blue.png",
+          "Black": "/images/havells-wire-black.png",
+          "Green": "/images/havells-wire-green.png",
+        },
+        "specs": {
+          "Brand": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "1.5mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w4",
+        "name": "Havells Life Line",
+        "image": "",
+        "colorImages": {
+          "Red": "/images/havells-wire-red.png",
+          "Blue": "/images/havells-wire-blue.png",
+          "Black": "/images/havells-wire-black.png",
+          "Green": "/images/havells-wire-green.png",
+        },
+        "specs": {
+          "Brand": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "2.5mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w5",
+        "name": "Havells Life Line",
+        "image": "",
+        "colorImages": {
+          "Red": "/images/havells-wire-red.png",
+          "Blue": "/images/havells-wire-blue.png",
+          "Black": "/images/havells-wire-black.png",
+          "Green": "/images/havells-wire-green.png",
+        },
+        "specs": {
+          "Brand": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "4mm",
+              "price": "200"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w6",
+        "name": "Havells Life Line",
+        "image": "",
+        "colorImages": {
+          "Red": "/images/havells-wire-red.png",
+          "Blue": "/images/havells-wire-blue.png",
+          "Black": "/images/havells-wire-black.png",
+          "Green": "/images/havells-wire-green.png",
+        },
+        "specs": {
+          "Brand": "Havells"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [{
+            "size": "6mm",
+              "price": "200"}
+          ]
+        }
+      },
+      {
+        "id": "w7",
+        "name": "Polycab Etira Wires",
+        "image": "/images/polycab-etira-wire.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Polycab"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "1mm",
+              "price": "852"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w8",
+        "name": "Polycab Etira Wires",
+        "image": "/images/polycab-etira-wire.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Polycab"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": ".75mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w9",
+        "name": "Polycab Etira Wires",
+        "image": "/images/polycab-etira-wire.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Polycab"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "1.5mm",
+              "price": "800"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w10",
+        "name": "Polycab Etira Wires",
+        "image": "/images/polycab-etira-wire.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Polycab"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "2.5mm",
+              "price": "741"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w11",
+        "name": "Polycab Etira Wires",
+        "image": "/images/polycab-etira-wire.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Polycab"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "4mm",
+              "price": "123"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w12",
+        "name": "Polycab Etira Wires",
+        "image": "/images/polycab-etira-wire.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Polycab"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "6mm",
+              "price": "456"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w13",
+        "name": "Chiwas ZHFR",
+        "image": "/images/Chiwas-wire2.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Chiwas"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": ".75mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w14",
+        "name": "Chiwas ZHFR",
+        "image": "/images/Chiwas-wire2.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Chiwas"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "1mm",
+              "price": "100"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w15",
+        "name": "Chiwas ZHFR",
+        "image": "/images/Chiwas-wire2.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Chiwas"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "1.5mm",
+              "price": "753"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w16",
+        "name": "Chiwas ZHFR",
+        "image": "/images/Chiwas-wire2.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Chiwas"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "2.5mm",
+              "price": "789"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w17",
+        "name": "Chiwas ZHFR",
+        "image": "/images/Chiwas-wire2.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Chiwas"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "4mm",
+              "price": "4523"
+            }
+          ]
+        }
+      },
+      {
+        "id": "w18",
+        "name": "Chiwas ZHFR",
+        "image": "/images/Chiwas-wire2.png",
+        "colorImages": {},
+        "specs": {
+          "Brand": "Chiwas"
+        },
+        "variants": {
+          "colors": [
+            "Red",
+            "Blue",
+            "Black",
+            "Green",
+            "Yellow"
+          ],
+          "sizes": [
+            {
+              "size": "6mm",
+              "price": "423"
+            }
+          ]
         }
       }
     ],

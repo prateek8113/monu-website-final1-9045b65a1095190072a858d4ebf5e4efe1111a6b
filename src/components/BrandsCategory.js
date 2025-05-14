@@ -12,19 +12,21 @@ const brandsList = [
   {
     id: 'havells',
     name: 'Havells',
-    logo: '/images/havells-logo.png',
+    logo: '/images/havells-logo.svg',
   },
   {
     id: 'anchor',
     name: 'Anchor Penta',
-    logo: '/images/brands/crompton-logo.png',
+    logo: '/images/anchor-by-panasonic.png',
   },
-  
-  // Add more brands as needed
+  {
+    id: 'reo',
+    name: 'Reo By Havells',
+    logo: '/images/reo-logo.png',
+  }
 ];
 
 const BrandsCategory = () => {
-
   const serviceId = '3';
 
   return (
@@ -34,15 +36,16 @@ const BrandsCategory = () => {
         <Typography level="h2" sx={{ textAlign: 'center', mb: 4 }}>
           Select a Brand
         </Typography>
+
         <Box
           component="ul"
           sx={{
             display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
             flexWrap: 'wrap',
             gap: 2,
             justifyContent: 'center',
             listStyle: 'none',
-            maxWidth: '100%',
             p: 0,
           }}
         >
@@ -50,22 +53,19 @@ const BrandsCategory = () => {
             <Link
               to={`/services/${serviceId}/brands/${brand.id}`}
               key={brand.id}
-              style={{
-                textDecoration: 'none',
-                minWidth: 300,
-                maxWidth: 340,
-                flexGrow: 1,
-              }}
+              style={{ textDecoration: 'none' }}
             >
               <Card
                 component="li"
-                sx={{ 
-                  height: '100%', 
+                sx={{
+                  width: 300,
+                  height: 200,
+                  mx: 'auto',
                   cursor: 'pointer',
                   transition: 'transform 0.2s',
                   '&:hover': {
                     transform: 'scale(1.03)'
-                  } 
+                  }
                 }}
               >
                 <CardCover>
@@ -73,20 +73,20 @@ const BrandsCategory = () => {
                     src={brand.logo}
                     loading="lazy"
                     alt={brand.name}
-                    style={{ width: '100%', height: '180px', objectFit: 'contain' }} 
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                    }}
                   />
                 </CardCover>
-                <CardContent sx={{ mt: { xs: 12, sm: 18 } }}>
-                  <Typography level="body-lg" textColor="black" sx={{ fontWeight: 'lg' }}>
-                    {brand.name}
-                  </Typography>
-                </CardContent>
+                <CardContent></CardContent>
               </Card>
             </Link>
           ))}
         </Box>
       </Box>
-      <Footer/>
+      <Footer />
     </>
   );
 };

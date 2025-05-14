@@ -2,6 +2,8 @@ import React from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './About.css';
+
 
 const About = () => {
   const about = [
@@ -50,10 +52,10 @@ const About = () => {
         </div>
         <div className="container">
           <div className="row py-3 justify-content-center">
-            <div className="col-lg-8 px-3">
+            <div className="col-lg-12 ">
               <p
-                className="lead mb-1"
-                style={{ fontSize: "20px", textAlign: "justify" }}
+                className="lead mb-1 about-text"
+                
               >
                 Welcome to Monu Electricals, your one-stop destination for all
                 your electrical needs. We are a family-owned business with over 20

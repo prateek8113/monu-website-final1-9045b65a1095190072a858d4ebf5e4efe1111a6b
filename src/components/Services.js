@@ -140,7 +140,7 @@ const ServiceCard = ({ service }) => (
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        backgroundColor: '#f5f5f5',
+        
       }}
     >
       <img

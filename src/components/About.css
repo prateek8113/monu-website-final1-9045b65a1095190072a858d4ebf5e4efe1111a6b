@@ -1,0 +1,15 @@
+/* About.css */
+.about-text {
+  font-family: 'Helvetica Neue', sans-serif; /* Default for desktop */
+  font-size: 28px;
+  text-align: justify;
+}
+
+/* Mobile view: apply different font */
+@media (max-width: 768px) {
+  .about-text {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size:12px;
+    text-align: justify;
+  }
+}
