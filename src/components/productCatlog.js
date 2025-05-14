@@ -2097,7 +2097,7 @@ export const productCatalog = {
           "Red": "/images/Havells-wire-red.png",
           "Blue": "/images/Havells-wire-blue.png",
           "Black": "/images/Havells-wire-black.png",
-          "Green": "/imagesHavells-wire-green.png",
+          "Green": "/images/Havells-wire-green.png",
         },
         "specs": {
           "Brand": "Havells"
@@ -2127,7 +2127,7 @@ export const productCatalog = {
           "Red": "/images/Havells-wire-red.png",
           "Blue": "/images/Havells-wire-blue.png",
           "Black": "/images/Havells-wire-black.png",
-          "Green": "/imagesHavells-wire-green.png",
+          "Green": "/images/Havells-wire-green.png",
         },
         "specs": {
           "Brand": "Havells"
@@ -2156,7 +2156,7 @@ export const productCatalog = {
           "Red": "/images/Havells-wire-red.png",
           "Blue": "/images/Havells-wire-blue.png",
           "Black": "/images/Havells-wire-black.png",
-          "Green": "/imagesHavells-wire-green.png",
+          "Green": "/images/Havells-wire-green.png",
         },
         "specs": {
           "Brand": "Havells"
@@ -2185,7 +2185,7 @@ export const productCatalog = {
           "Red": "/images/Havells-wire-red.png",
           "Blue": "/images/Havells-wire-blue.png",
           "Black": "/images/Havells-wire-black.png",
-          "Green": "/imagesHavells-wire-green.png",
+          "Green": "/images/Havells-wire-green.png",
         },
         "specs": {
           "Brand": "Havells"
@@ -2214,7 +2214,7 @@ export const productCatalog = {
           "Red": "/images/Havells-wire-red.png",
           "Blue": "/images/Havells-wire-blue.png",
           "Black": "/images/Havells-wire-black.png",
-          "Green": "/imagesHavells-wire-green.png",
+          "Green": "/images/Havells-wire-green.png",
         },
         "specs": {
           "Brand": "Havells"
@@ -2243,7 +2243,7 @@ export const productCatalog = {
           "Red": "/images/Havells-wire-red.png",
           "Blue": "/images/Havells-wire-blue.png",
           "Black": "/images/Havells-wire-black.png",
-          "Green": "/imagesHavells-wire-green.png",
+          "Green": "/images/Havells-wire-green.png",
         },
         "specs": {
           "Brand": "Havells"
@@ -2825,6 +2825,6 @@ export const services = [
   },
   {
     title: "Chimney",
-    image: "/images/SakashChimney.png",
+    image: "/images/Sakashchimney.png",
   },
 ];
