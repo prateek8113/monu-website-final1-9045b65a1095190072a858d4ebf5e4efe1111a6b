@@ -1731,13 +1731,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           "Black":"/images/havells-adiva-8m-switch6a.png",
+          "White": "/images/reo-6a-switch-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1749,6 +1750,7 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           "Black":"/images/havells-adiva-8m-switch6a.png",
+          "White": "/images/reo-16a-switch-white.png",
           
         },
         "specs": {
@@ -1756,7 +1758,7 @@ export const productCatalog = {
         },
         "variants": {
           "colors": [
-          
+          "White",
             "Black"
           ],
           "sizes": []
@@ -1767,14 +1769,15 @@ export const productCatalog = {
         "name": "Havells Adiva 6A Socket",
         "image": "",
         "colorImages": {
-          "Black":"/images/havells-adiva-8m-socket6a.png",
+           "White": "/images/reo-16asocket-white.png",
+          "Black": "/images/reo-16asocket-black.png"
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1785,15 +1788,15 @@ export const productCatalog = {
         "name": "Havells Adiva 16A Socket",
         "image": "",
         "colorImages": {
-          "White": "/images/reo-16asocket-white.png",
-          "Black": "/images/reo-16asocket-black.png"
+         White: "/images/havells-16a-socket-black (2).png",
+          Black: "/images/havells-16a-socket-black.png"
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1804,14 +1807,17 @@ export const productCatalog = {
         "name": "Havells Adiva Bell Push 1M",
         "image": "",
         "colorImages": {
+          White: "/images/havells-bellpush-1m-white.png",
+          Black: "/images/havells-bellpush-1m-black.png"
           
         },
         "specs": {
           "Brand Name":"Havells"
+          
         },
         "variants": {
           "colors": [
-           
+           "White",
             "Black"
           ],
           "sizes": []
@@ -1822,14 +1828,15 @@ export const productCatalog = {
         "name": "Havells Adiva Bell Push 2M",
         "image": "",
         "colorImages": {
-          
+          White: "/images/havells-bellpush-white.png",
+          Black: "/images/havells-bellpush2m-black.png"
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1840,14 +1847,15 @@ export const productCatalog = {
         "name": "Havells Adiva Fan Indicator 1M",
         "image": "",
         "colorImages": {
-           
+           White: "/images/havells-fanregulator-white.png",
+          Black: "/images/havells-fanregulator-black.png"
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-           
+           "White",
             "Black"
           ],
           "sizes": []
@@ -1858,6 +1866,8 @@ export const productCatalog = {
         "name": "Havells Adiva Fan Indicator 2M",
         "image": "",
         "colorImages": {
+          White: "/images/havells-bellpush2m-white.png",
+          Black: "/images/havells-fanregulator2m-black.png"  
           
         },
         "specs": {
@@ -1865,7 +1875,7 @@ export const productCatalog = {
         },
         "variants": {
           "colors": [
-        
+        "White",
             "Black"
           ],
           "sizes": []
@@ -1876,6 +1886,8 @@ export const productCatalog = {
         "name": "Havells Adiva 6A 2-Way-Switch",
         "image": "",
         "colorImages": {
+          White: "/images/havells-2wayswitch-white.png",
+          Black: "/images/havells-2wayswitch-black.png"
           
         },
         "specs": {
@@ -1883,7 +1895,7 @@ export const productCatalog = {
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1894,14 +1906,16 @@ export const productCatalog = {
         "name": "Havells Adiva Blank",
         "image": "",
         "colorImages": {
-          
+          Black: "/images/havells-blank-black.png",
+          White: "/images/havells-blank-white.png",
+
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1913,13 +1927,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-2m-plate-black.png",
+          White: "/images/havells-2m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1931,13 +1946,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-1m-plate-black.png",
+          White: "/images/havells-1m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1949,13 +1965,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-3m-plate-black.png",
+          White: "/images/havells-3m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1967,13 +1984,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-4m-plate-black.png",
+          White: "/images/havells-4m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -1985,13 +2003,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-6m-plate-black.png",
+          White: "/images/havells-6m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -2003,13 +2022,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
          Black: "/images/havells-adiva-8m-plate-black.png",
+         White: "/images/havells-8m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -2021,13 +2041,15 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-8mh-plate-black.png",
+          White: "/images/havells-8(v)m-plate-white.png",
+
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -2039,13 +2061,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-12m-plate-black.png",
+          White: "/images/havells-12m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
@@ -2075,13 +2098,14 @@ export const productCatalog = {
         "image": "",
         "colorImages": {
           Black: "/images/havells-adiva-18m-plate-black.png",
+          White: "/images/havells-18m-plate-white.png",
         },
         "specs": {
           "Brand Name": "Havells"
         },
         "variants": {
           "colors": [
-            
+            "White",
             "Black"
           ],
           "sizes": []
