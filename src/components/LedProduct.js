@@ -4,6 +4,8 @@ import { productCatalog } from './productCatlog';
 import { useCart } from './Addtocart';
 import Navbar from './Navbar';
 import Footer from "./Footer";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 // MUI Joy imports
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -13,7 +15,6 @@ import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
-
 
 const DEFAULT_IMAGE = "/images/placeholder-product.png";
 
@@ -117,21 +118,325 @@ const LedProduct = () => {
   return (
     <>
       <Navbar />
-      {/* Replaced Bootstrap container with custom styling */}
-      <Box 
-        sx={{ 
-          width: "95%", 
-          maxWidth: "1700px", 
-          mx: "auto", 
-          py: 5 
+      
+      {/* Filter and Sort buttons - only on mobile */}
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+          borderBottom: "1px solid",
+          borderColor: "divider",
+          justifyContent: "space-between",
+          px: 2,
+          py: 1.5
         }}
       >
+        <Button 
+          variant="outlined" 
+          color="neutral" 
+          startDecorator={<Box sx={{ fontSize: "1.2rem" }}>↓</Box>}
+          sx={{ 
+            flex: 1, 
+            justifyContent: "center",
+            borderRadius: "0",
+            borderColor: "transparent",
+            mr: 1
+          }}
+        >
+          Sort
+        </Button>
+        <Box sx={{ width: "1px", bgcolor: "divider" }} />
+        <Button 
+          variant="outlined" 
+          color="neutral" 
+          startDecorator={<Box sx={{ fontSize: "1.2rem" }}>≡</Box>}
+          sx={{ 
+            flex: 1, 
+            justifyContent: "center",
+            borderRadius: "0",
+            borderColor: "transparent",
+            ml: 1
+          }}
+        >
+          Filter
+        </Button>
+      </Box>
+
+      {/* Main content container */}
+      <Box 
+        sx={{ 
+          width: { xs: "100%", md: "95%" }, 
+          maxWidth: "1700px", 
+          mx: "auto", 
+          py: { xs: 1, md: 5 }
+        }}
+      >
+        {/* Page title with different styling for mobile/desktop */}
+        <Typography 
+          level="h1" 
+          sx={{ 
+            fontSize: { xs: "1.5rem", md: "2.5rem" }, 
+            mb: { xs: 1, md: 4 },
+            px: { xs: 2, md: 0 },
+            fontWeight: "bold",
+            display: { xs: "none", md: "block" }
+          }}
+        >
+          {categoryKey ? categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1).replace(/([A-Z])/g, ' $1').trim() : 'LED Products'}
+        </Typography>
+        
+        {/* Mobile view: List layout */}
         <Box 
           sx={{ 
-            display: "grid",
+            display: { xs: "flex", md: "none" },
+            flexDirection: "column",
+            gap: 1,
+          }}
+        >
+          {products.map((product, index) => {
+            const selected = selectedOptions[product.id] || {};
+            const variants = product.variants || {};
+            const currentImage = getCurrentImage(product, selected.color);
+            const showPrice = selected.size?.price || product.price || "14999";
+
+            return (
+              <Card 
+                key={index}
+                sx={{ 
+                  borderRadius: 0,
+                  boxShadow: "none",
+                  display: "flex",
+                  flexDirection: "row",
+                  borderBottom: "1px solid",
+                  borderColor: "divider",
+                  py: 2
+                }}
+              >
+                {/* Image Section - Left side on mobile */}
+                <Box
+                  sx={{ 
+                    width: "40%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    p: 1
+                  }}
+                >
+                  <AspectRatio ratio="1" sx={{ width: "100%" }}>
+                    <Zoom>
+                    <img 
+                      src={currentImage} 
+                      alt={product.name} 
+                      loading="lazy" 
+                      style={{ 
+                        objectFit: "contain",
+                          maxHeight: "100%",
+                          width: "100%",
+                          height: "100%",
+                          cursor: "zoom-in"
+                      }}
+                    />
+                    </Zoom>
+                  </AspectRatio>
+                </Box>
+                
+                {/* Content Section - Right side on mobile */}
+                <Box sx={{ 
+                  display: "flex", 
+                  flexDirection: "column",
+                  flex: 1,
+                  width: "60%",
+                  pl: 2
+                }}>
+                  {/* Product Name */}
+                  <Typography 
+                    level="title-md" 
+                    sx={{ 
+                      fontSize: "1rem", 
+                      fontWeight: "normal", 
+                      fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+                      color: "text.primary",
+                      lineHeight: 1.3,
+                      mb: 0.5
+                    }}
+                  >
+                    {product.name}
+                  </Typography>
+                  
+                  {/* Pricing Section */}
+                  <Typography 
+                    component="span" 
+                    sx={{ 
+                      fontWeight: "bold",
+                      fontSize: "18px"
+                    }}
+                  >
+                    ₹{showPrice}
+                  </Typography>
+                  
+                  {/* Free delivery text */}
+                  <Typography 
+                    level="body-sm" 
+                    sx={{ 
+                      mb: 0.5,
+                      fontSize: "14px"
+                    }}
+                  >
+                    Free delivery
+                  </Typography>
+                  
+                  {/* Product specs on mobile - abbreviated version */}
+                  {product.specs && Object.keys(product.specs).length > 0 && (
+                    <Box sx={{ mt: 1 }}>
+                      {Object.entries(product.specs).slice(0, 2).map(([key, value]) => (
+                        <Typography 
+                          key={key} 
+                          level="body-sm" 
+                          sx={{ 
+                            display: "flex",
+                            fontSize: "12px", 
+                            mb: 0.5,
+                            color: "text.secondary"
+                          }}
+                        >
+                          <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
+                            {key} -
+                          </Box> 
+                          <Box component="span" sx={{ fontWeight: "400", textTransform: "capitalize" }}>
+                            {value}
+                          </Box> 
+                        </Typography>
+                      ))}
+                    </Box>
+                  )}
+                  
+                  {/* Color and Size options for mobile */}
+                  <Box sx={{ mt: 1 }}>
+                    {variants.colors?.length > 0 && (
+                      <Box sx={{ mb: 1 }}>
+                        <Typography 
+                          level="body-sm" 
+                          sx={{ 
+                            color: "text.secondary", 
+                            fontWeight: "600",
+                            fontSize: "12px",
+                            mb: 0.5 
+                          }}
+                        >
+                          Colors
+                        </Typography>
+                        <Box sx={{ display: "flex", gap: 0.5, flexWrap: "wrap" }}>
+                          {variants.colors.map((color, idx) => (
+                            <Button
+                              key={idx}
+                              size="sm"
+                              variant={selected.color === color ? "solid" : "outlined"}
+                              color="primary"
+                              sx={{ 
+                                borderRadius: "4px",
+                                textTransform: "none",
+                                fontSize: "10px",
+                                minWidth: "unset",
+                                px: 1,
+                                py: 0.25
+                              }}
+                              onClick={() => handleColorChange(product.id, color)}
+                            >
+                              {color}
+                            </Button>
+                          ))}
+                        </Box>
+                      </Box>
+                    )}
+                
+                    {variants.sizes?.length > 0 && (
+                      <Box>
+                        <Typography 
+                          level="body-sm" 
+                          sx={{ 
+                            color: "text.secondary", 
+                            fontWeight: "600",
+                            fontSize: "12px",
+                            mb: 0.5 
+                          }}
+                        >
+                          Sizes
+                        </Typography>
+                        <Box sx={{ display: "flex", gap: 0.5, flexWrap: "wrap" }}>
+                          {variants.sizes.map((sizeObj, idx) => (
+                            <Button
+                              key={idx}
+                              size="sm"
+                              variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
+                              color="primary"
+                              sx={{ 
+                                borderRadius: "4px",
+                                textTransform: "none",
+                                fontSize: "10px",
+                                minWidth: "unset",
+                                px: 1,
+                                py: 0.25
+                              }}
+                              onClick={() => handleSizeChange(product.id, sizeObj)}
+                            >
+                              {sizeObj.size}
+                            </Button>
+                          ))}
+                        </Box>
+                      </Box>
+                    )}
+                  </Box>
+                  
+                  {/* Mobile action buttons */}
+                  <Box sx={{ 
+                    display: "flex", 
+                    gap: 1,
+                    mt: "auto",
+                    pt: 1
+                  }}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="sm"
+                      sx={{
+                        borderRadius: "4px",
+                        fontWeight: "600",
+                        textTransform: "none",
+                        boxShadow: "none",
+                        fontSize: "12px",
+                        px: 1
+                      }}
+                      onClick={() => sendWhatsAppMessage(product)}
+                    >
+                      Enquire
+                    </Button>
+                    <Button
+                      variant="solid"
+                      color="primary"
+                      size="sm"
+                      sx={{
+                        borderRadius: "4px",
+                        fontWeight: "600",
+                        textTransform: "none",
+                        boxShadow: "none",
+                        fontSize: "12px",
+                        px: 1
+                      }}
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </Box>
+                </Box>
+              </Card>
+            );
+          })}
+        </Box>
+        
+        {/* Desktop view: Grid layout - keep the same as before */}
+        <Box 
+          sx={{ 
+            display: { xs: "none", md: "grid" },
             gridTemplateColumns: {
-              xs: "1fr",                    // One column on extra small screens
-              sm: "repeat(2, 1fr)",         // Two columns on small screens
               md: "repeat(2, 1fr)",         // Two columns on medium screens
               lg: "repeat(3, 1fr)",         // Three columns on large screens
               xl: "repeat(4, 1fr)"          // Four columns on extra large screens
@@ -163,18 +468,20 @@ const LedProduct = () => {
                 {/* Image Section */}
                 <CardOverflow>
                   <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
+                  <Zoom>
                     <img 
                       src={currentImage} 
                       alt={product.name} 
                       loading="lazy" 
                       style={{ 
-                        objectFit: "cover",
-                        transition: "transform 0.5s",
-                        "&:hover": {
-                          transform: "scale(1.05)"
-                        }
+                         objectFit: "contain",
+                          maxHeight: "100%",
+                          width: "100%",
+                          height: "100%",
+                          cursor: "zoom-in"
                       }}
                     />
+                    </Zoom>
                   </AspectRatio>
                 </CardOverflow>
                 
