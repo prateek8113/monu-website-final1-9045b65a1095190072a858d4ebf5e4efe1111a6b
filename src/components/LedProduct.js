@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import Footer from "./Footer";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import { Select, MenuItem } from "@mui/joy";
 
 // MUI Joy imports
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -105,12 +106,12 @@ const LedProduct = () => {
     if (selectedColor && product.colorImages && product.colorImages[selectedColor]) {
       return product.colorImages[selectedColor];
     }
-    
+
     // Check if the product has a main image
     if (product.image && product.image !== "") {
       return product.image;
     }
-    
+
     // Return default placeholder if no valid image is found
     return DEFAULT_IMAGE;
   };
@@ -118,22 +119,22 @@ const LedProduct = () => {
   return (
     <>
       <Navbar />
-      
+
 
       {/* Main content container */}
-      <Box 
-        sx={{ 
-          width: { xs: "100%", md: "95%" }, 
-          maxWidth: "1700px", 
-          mx: "auto", 
+      <Box
+        sx={{
+          width: { xs: "100%", md: "95%" },
+          maxWidth: "1700px",
+          mx: "auto",
           py: { xs: 1, md: 5 }
         }}
       >
         {/* Page title with different styling for mobile/desktop */}
-        <Typography 
-          level="h1" 
-          sx={{ 
-            fontSize: { xs: "1.5rem", md: "2.5rem" }, 
+        <Typography
+          level="h1"
+          sx={{
+            fontSize: { xs: "1.5rem", md: "2.5rem" },
             mb: { xs: 1, md: 4 },
             px: { xs: 2, md: 0 },
             fontWeight: "bold",
@@ -142,10 +143,10 @@ const LedProduct = () => {
         >
           {categoryKey ? categoryKey.charAt(0).toUpperCase() + categoryKey.slice(1).replace(/([A-Z])/g, ' $1').trim() : 'LED Products'}
         </Typography>
-        
+
         {/* Mobile view: List layout */}
-        <Box 
-          sx={{ 
+        <Box
+          sx={{
             display: { xs: "flex", md: "none" },
             flexDirection: "column",
             gap: 1,
@@ -173,27 +174,25 @@ const LedProduct = () => {
                 {/* Image Section - Left side on mobile */}
                 <Box
                   sx={{
-                    width: "40%",
+                    width: "60%", // Increased from 40% to 60% for a larger image
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    p: 1
+                    p: 1,
                   }}
                 >
-                  <AspectRatio ratio="1" sx={{ width: "100%" }}>
+                  <AspectRatio ratio="1" sx={{ width: "100%", maxWidth: "500px" }}>
                     <Zoom>
                       <img
                         src={currentImage}
                         alt={product.name}
                         loading="lazy"
                         style={{
-                          objectFit: "fill",
-                          maxHeight: "100%",
+                          objectFit: "cover", // Changed to "cover" to fill the container
                           width: "100%",
                           height: "100%",
                           cursor: "pointer",
-                          display: "block",
-                          backgroundColor: "none"
+                          backgroundColor: "white",
                         }}
                       />
                     </Zoom>
@@ -223,7 +222,7 @@ const LedProduct = () => {
                     {product.name}
                   </Typography>
 
-                 
+
 
                   {/* Product specs on mobile - abbreviated version */}
                   {product.specs && Object.keys(product.specs).length > 0 && (
@@ -251,82 +250,79 @@ const LedProduct = () => {
                   )}
 
                   {/* Color and Size options for mobile */}
-                  <Box sx={{ mt: 1,display: "flex", gap: 2, flexWrap: "wrap" }}>
+                  <Box sx={{ mt: 1, display: "flex", gap: 1, flexWrap: "wrap" }}>
                     {variants.colors?.length > 0 && (
-                      <Box sx={{ mb: 1 }}>
+                      <Box sx={{ mb: 1, minWidth: "100px" }}>
                         <Typography
                           level="body-sm"
                           sx={{
                             color: "text.secondary",
                             fontWeight: "600",
                             fontSize: "14px",
-                            mb: 0.5
+                            mb: 0.5,
                           }}
                         >
                           Colors
                         </Typography>
-                        <Box sx={{ display: "flex", gap: 0.5, flexWrap: "wrap" }}>
+                        <Select
+                          value={selected.color || ""}
+                          onChange={(event, newValue) => handleColorChange(product.id, newValue)}
+                          size="sm"
+                          sx={{
+                            borderRadius: "4px",
+                            fontSize: "12px",
+                            minWidth: "100px",
+                          }}
+                          placeholder="Select a color"
+                        >
                           {variants.colors.map((color, idx) => (
-                            <Button
-                              key={idx}
-                              size="sm"
-                              variant={selected.color === color ? "solid" : "outlined"}
-                              color="primary"
-                              sx={{
-                                borderRadius: "4px",
-                                textTransform: "none",
-                                fontSize: "12px",
-                                minWidth: "unset",
-                                px: 1,
-                                py: 0.25
-                              }}
-                              onClick={() => handleColorChange(product.id, color)}
-                            >
+                            <MenuItem key={idx} value={color}>
                               {color}
-                            </Button>
+                            </MenuItem>
                           ))}
-                        </Box>
+                        </Select>
                       </Box>
                     )}
 
                     {variants.sizes?.length > 0 && (
-                      <Box>
+                      <Box sx={{ minWidth: "100px" }}>
                         <Typography
                           level="body-sm"
                           sx={{
                             color: "text.secondary",
                             fontWeight: "600",
                             fontSize: "14px",
-                            mb: 0.5
+                            mb: 0.5,
                           }}
                         >
                           Sizes
                         </Typography>
-                        <Box sx={{ display: "flex", gap: 0.5, flexWrap: "wrap" }}>
+                        <Select
+                          value={selected?.size?.size || ""}
+                          onChange={(event, newValue) =>
+                            handleSizeChange(
+                              product.id,
+                              variants.sizes.find((sizeObj) => sizeObj.size === newValue)
+                            )
+                          }
+                          size="sm"
+                          sx={{
+                            borderRadius: "4px",
+                            fontSize: "12px",
+                            minWidth: "100px",
+                          }}
+                          placeholder="Select a size"
+                        >
                           {variants.sizes.map((sizeObj, idx) => (
-                            <Button
-                              key={idx}
-                              size="sm"
-                              variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
-                              color="primary"
-                              sx={{
-                                borderRadius: "4px",
-                                textTransform: "none",
-                                fontSize: "12px",
-                                minWidth: "unset",
-                                px: 1,
-                                py: 0.25
-                              }}
-                              onClick={() => handleSizeChange(product.id, sizeObj)}
-                            >
+                            <MenuItem key={idx} value={sizeObj.size}>
                               {sizeObj.size}
-                            </Button>
+                            </MenuItem>
                           ))}
-                        </Box>
+                        </Select>
                       </Box>
                     )}
                   </Box>
-                   {/* Pricing Section */}
+                  {/* Pricing Section */}
                   <Typography
                     component="span"
                     sx={{
@@ -397,10 +393,10 @@ const LedProduct = () => {
             );
           })}
         </Box>
-        
+
         {/* Desktop view: Grid layout - keep the same as before */}
-        <Box 
-          sx={{ 
+        <Box
+          sx={{
             display: { xs: "none", md: "grid" },
             gridTemplateColumns: {
               md: "repeat(2, 1fr)",         // Two columns on medium screens
@@ -417,10 +413,10 @@ const LedProduct = () => {
             const showPrice = selected.size?.price || product.price;
 
             return (
-              <Card 
+              <Card
                 key={index}
-                sx={{ 
-                  height: "100%", 
+                sx={{
+                  height: "100%",
                   borderRadius: "12px",
                   transition: "all 0.3s",
                   "&:hover": {
@@ -434,80 +430,80 @@ const LedProduct = () => {
                 {/* Image Section */}
                 <CardOverflow>
                   <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
-                  <Zoom>
-                    <img 
-                      src={currentImage} 
-                      alt={product.name} 
-                      loading="lazy" 
-                      style={{ 
-                         objectFit: "contain",
+                    <Zoom>
+                      <img
+                        src={currentImage}
+                        alt={product.name}
+                        loading="lazy"
+                        style={{
+                          objectFit: "contain",
                           maxHeight: "100%",
                           width: "100%",
                           height: "100%",
                           cursor: "zoom-in"
-                      }}
-                    />
+                        }}
+                      />
                     </Zoom>
                   </AspectRatio>
                 </CardOverflow>
-                
+
                 {/* Container for all text content */}
-                <Box sx={{ 
-                  display: "flex", 
+                <Box sx={{
+                  display: "flex",
                   flexDirection: "column",
                   flex: 1,
                   mt: 1,
                 }}>
                   {/* Text Content Section */}
                   <CardContent sx={{ p: 2, flex: 1 }}>
-                    <Typography 
-                      level="title-md" 
-                      sx={{ 
-                        fontSize: "1.5rem", 
-                        fontWeight: "bold", 
+                    <Typography
+                      level="title-md"
+                      sx={{
+                        fontSize: "1.5rem",
+                        fontWeight: "bold",
                         fontFamily: "Helvetica",
-                        color: "text.primary" 
+                        color: "text.primary"
                       }}
                     >
                       {product.name}
                     </Typography>
-                
+
                     {product.specs && Object.keys(product.specs).length > 0 && (
                       <Box sx={{}}>
                         {Object.entries(product.specs).map(([key, value]) => (
-                          <Typography 
-                            key={key} 
-                            level="body-sm" 
-                            sx={{ 
+                          <Typography
+                            key={key}
+                            level="body-sm"
+                            sx={{
                               mt: 1,
                               display: "flex",
-                              fontSize: "20px", 
+                              fontSize: "20px",
                               mb: 0.75,
                               color: "text.secondary"
                             }}
                           >
                             <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
                               {key} -
-                            </Box> 
+                            </Box>
                             <Box component="span" sx={{ color: "text.secondary", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
                               {value}
-                            </Box> 
+                            </Box>
                           </Typography>
                         ))}
                       </Box>
                     )}
-                
+
                     {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
                       <Box sx={{ mt: 1, display: "flex", flexWrap: "wrap", gap: 2 }}>
                         {variants.colors?.length > 0 && (
                           <Box>
-                            <Typography 
-                              level="body-sm" 
-                              sx={{ 
-                                color: "text.secondary", 
+                            <Typography
+                              level="body-sm"
+                              sx={{
+                                color: "text.secondary",
                                 fontWeight: "600",
                                 fontSize: "20px",
-                                mb: 1 
+                                mb: 1
                               }}
                             >
                               Colors
@@ -519,7 +515,7 @@ const LedProduct = () => {
                                   size="sm"
                                   variant={selected.color === color ? "solid" : "outlined"}
                                   color="primary"
-                                  sx={{ 
+                                  sx={{
                                     borderRadius: "6px",
                                     textTransform: "none",
                                     fontSize: "1rem",
@@ -535,16 +531,16 @@ const LedProduct = () => {
                             </Box>
                           </Box>
                         )}
-                
+
                         {variants.sizes?.length > 0 && (
                           <Box>
-                            <Typography 
-                              level="body-sm" 
-                              sx={{ 
-                                color: "text.secondary", 
+                            <Typography
+                              level="body-sm"
+                              sx={{
+                                color: "text.secondary",
                                 fontWeight: "600",
                                 fontSize: "20px",
-                                mb: 1 
+                                mb: 1
                               }}
                             >
                               Sizes
@@ -556,7 +552,7 @@ const LedProduct = () => {
                                   size="sm"
                                   variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
                                   color="primary"
-                                  sx={{ 
+                                  sx={{
                                     borderRadius: "6px",
                                     textTransform: "none",
                                     fontSize: "1rem",
@@ -574,13 +570,13 @@ const LedProduct = () => {
                         )}
                       </Box>
                     )}
-                
+
                     {showPrice && (
-                      <Typography 
-                        level="title-lg" 
-                        sx={{ 
-                          mt: 1, 
-                          color: "primary.main", 
+                      <Typography
+                        level="title-lg"
+                        sx={{
+                          mt: 1,
+                          color: "primary.main",
                           fontWeight: "700",
                           fontSize: "1.5rem"
                         }}
@@ -589,11 +585,11 @@ const LedProduct = () => {
                       </Typography>
                     )}
                   </CardContent>
-                
+
                   {/* Buttons Section */}
                   <CardOverflow>
-                    <Box sx={{ 
-                      display: "flex", 
+                    <Box sx={{
+                      display: "flex",
                       gap: 1.5,
                       p: 1
                     }}>
@@ -633,7 +629,7 @@ const LedProduct = () => {
           })}
         </Box>
       </Box>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -147,9 +147,9 @@ const ServiceDetail = () => {
       <Navbar />
 
 
-      
-        
-        
+
+
+
 
       {/* Main content container */}
       <Box
@@ -204,26 +204,25 @@ const ServiceDetail = () => {
                 {/* Image Section - Left side on mobile */}
                 <Box
                   sx={{
-                    width: "40%",
+                    width: "60%", // Increased from 40% to 60% for a larger image
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    p: 1
+                    p: 1,
                   }}
                 >
-                  <AspectRatio ratio="1" sx={{ width: "100%" }}>
+                  <AspectRatio ratio="1" sx={{ width: "100%", maxWidth: "500px" }}>
                     <Zoom>
                       <img
                         src={currentImage}
                         alt={product.name}
                         loading="lazy"
                         style={{
-                          objectFit: "contain",
-                          maxHeight: "100%",
+                          objectFit: "cover", // Changed to "cover" to fill the container
                           width: "100%",
                           height: "100%",
                           cursor: "pointer",
-                          backgroundColor: "white"
+                          backgroundColor: "white",
                         }}
                       />
                     </Zoom>
@@ -253,7 +252,7 @@ const ServiceDetail = () => {
                     {product.name}
                   </Typography>
 
-                 
+
 
                   {/* Product specs on mobile - abbreviated version */}
                   {product.specs && Object.keys(product.specs).length > 0 && (
@@ -281,7 +280,7 @@ const ServiceDetail = () => {
                   )}
 
                   {/* Color and Size options for mobile */}
-                  <Box sx={{ mt: 1,display: "flex", gap: 2, flexWrap: "wrap" }}>
+                  <Box sx={{ mt: 1, display: "flex", gap: 2, flexWrap: "wrap" }}>
                     {variants.colors?.length > 0 && (
                       <Box sx={{ mb: 1 }}>
                         <Typography
@@ -356,7 +355,7 @@ const ServiceDetail = () => {
                       </Box>
                     )}
                   </Box>
-                   {/* Pricing Section */}
+                  {/* Pricing Section */}
                   <Typography
                     component="span"
                     sx={{
