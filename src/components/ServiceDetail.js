@@ -146,47 +146,10 @@ const ServiceDetail = () => {
     <>
       <Navbar />
 
-      {/* Filter and Sort buttons - only on mobile */}
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          borderBottom: "1px solid",
-          borderColor: "divider",
-          justifyContent: "space-between",
-          px: 2,
-          py: 1.5
-        }}
-      >
-        <Button
-          variant="outlined"
-          color="neutral"
-          startDecorator={<Box sx={{ fontSize: "1.2rem" }}>↓</Box>}
-          sx={{
-            flex: 1,
-            justifyContent: "center",
-            borderRadius: "0",
-            borderColor: "transparent",
-            mr: 1
-          }}
-        >
-          Sort
-        </Button>
-        <Box sx={{ width: "1px", bgcolor: "divider" }} />
-        <Button
-          variant="outlined"
-          color="neutral"
-          startDecorator={<Box sx={{ fontSize: "1.2rem" }}>≡</Box>}
-          sx={{
-            flex: 1,
-            justifyContent: "center",
-            borderRadius: "0",
-            borderColor: "transparent",
-            ml: 1
-          }}
-        >
-          Filter
-        </Button>
-      </Box>
+
+      
+        
+        
 
       {/* Main content container */}
       <Box
@@ -278,8 +241,8 @@ const ServiceDetail = () => {
                   <Typography
                     level="title-md"
                     sx={{
-                      fontSize: "1rem",
-                      fontWeight: "normal",
+                      fontSize: "18px",
+                      fontWeight: "bold",
                       fontFamily: "Roboto, Helvetica, Arial, sans-serif",
                       color: "text.primary",
                       lineHeight: 1.3,
@@ -289,27 +252,7 @@ const ServiceDetail = () => {
                     {product.name}
                   </Typography>
 
-                  {/* Pricing Section */}
-                  <Typography
-                    component="span"
-                    sx={{
-                      fontWeight: "bold",
-                      fontSize: "18px"
-                    }}
-                  >
-                    ₹{showPrice}
-                  </Typography>
-
-                  {/* Free delivery text */}
-                  <Typography
-                    level="body-sm"
-                    sx={{
-                      mb: 0.5,
-                      fontSize: "14px"
-                    }}
-                  >
-                    Free delivery
-                  </Typography>
+                 
 
                   {/* Product specs on mobile - abbreviated version */}
                   {product.specs && Object.keys(product.specs).length > 0 && (
@@ -320,7 +263,7 @@ const ServiceDetail = () => {
                           level="body-sm"
                           sx={{
                             display: "flex",
-                            fontSize: "12px",
+                            fontSize: "14px",
                             mb: 0.5,
                             color: "text.secondary"
                           }}
@@ -337,7 +280,7 @@ const ServiceDetail = () => {
                   )}
 
                   {/* Color and Size options for mobile */}
-                  <Box sx={{ mt: 1 }}>
+                  <Box sx={{ mt: 1,display: "flex", gap: 2, flexWrap: "wrap" }}>
                     {variants.colors?.length > 0 && (
                       <Box sx={{ mb: 1 }}>
                         <Typography
@@ -345,7 +288,7 @@ const ServiceDetail = () => {
                           sx={{
                             color: "text.secondary",
                             fontWeight: "600",
-                            fontSize: "12px",
+                            fontSize: "14px",
                             mb: 0.5
                           }}
                         >
@@ -361,7 +304,7 @@ const ServiceDetail = () => {
                               sx={{
                                 borderRadius: "4px",
                                 textTransform: "none",
-                                fontSize: "10px",
+                                fontSize: "12px",
                                 minWidth: "unset",
                                 px: 1,
                                 py: 0.25
@@ -382,7 +325,7 @@ const ServiceDetail = () => {
                           sx={{
                             color: "text.secondary",
                             fontWeight: "600",
-                            fontSize: "12px",
+                            fontSize: "14px",
                             mb: 0.5
                           }}
                         >
@@ -398,7 +341,7 @@ const ServiceDetail = () => {
                               sx={{
                                 borderRadius: "4px",
                                 textTransform: "none",
-                                fontSize: "10px",
+                                fontSize: "12px",
                                 minWidth: "unset",
                                 px: 1,
                                 py: 0.25
@@ -412,13 +355,37 @@ const ServiceDetail = () => {
                       </Box>
                     )}
                   </Box>
+                   {/* Pricing Section */}
+                  <Typography
+                    component="span"
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                      marginTop: 1,
+                    }}
+                  >
+                    ₹{showPrice}
+                  </Typography>
+
+                  {/* Free delivery text */}
+                  <Typography
+                    level="body-sm"
+                    sx={{
+                      mb: 0.5,
+                      fontSize: "14px"
+                    }}
+                  >
+                    Free delivery
+                  </Typography>
 
                   {/* Mobile action buttons */}
                   <Box sx={{
                     display: "flex",
                     gap: 1,
                     mt: "auto",
-                    pt: 1
+                    pt: 1,
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}>
                     <Button
                       variant="outlined"
@@ -429,7 +396,7 @@ const ServiceDetail = () => {
                         fontWeight: "600",
                         textTransform: "none",
                         boxShadow: "none",
-                        fontSize: "12px",
+                        fontSize: "16px",
                         px: 1
                       }}
                       onClick={() => sendWhatsAppMessage(product)}
@@ -445,7 +412,7 @@ const ServiceDetail = () => {
                         fontWeight: "600",
                         textTransform: "none",
                         boxShadow: "none",
-                        fontSize: "12px",
+                        fontSize: "16px",
                         px: 1
                       }}
                       onClick={() => handleAddToCart(product)}

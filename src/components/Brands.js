@@ -37,7 +37,7 @@ const Brands = () => {
     <div>
     <section className="py-5 bg-light">
         <div className="container">
-          <h2 className="text-center mb-3">Our Premium Brands</h2>
+          <h3 className="text-center mb-3">Our Premium Brands</h3>
           <p className="text-center text-muted mb-5">
             We partner with the world's leading electrical manufacturers to
             bring you the best in quality and innovation.

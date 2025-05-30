@@ -24,7 +24,7 @@ const Services = () => {
 
   return (
     <Box sx={{ px: 1, py: 5 }}>
-      <Typography level="h2" sx={{ textAlign: 'center', mb: 4 }}>
+      <Typography level="h3" sx={{ textAlign: 'center', mb: 4 }}>
         Our Services
       </Typography>
       
