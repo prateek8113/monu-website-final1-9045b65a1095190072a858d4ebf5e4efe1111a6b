@@ -222,7 +222,8 @@ const ServiceDetail = () => {
                           maxHeight: "100%",
                           width: "100%",
                           height: "100%",
-                          cursor: "zoom-in"
+                          cursor: "pointer",
+                          backgroundColor: "white"
                         }}
                       />
                     </Zoom>
