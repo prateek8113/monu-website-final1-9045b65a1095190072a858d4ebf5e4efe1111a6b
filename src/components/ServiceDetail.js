@@ -413,7 +413,8 @@ const ServiceDetail = () => {
                         textTransform: "none",
                         boxShadow: "none",
                         fontSize: "16px",
-                        px: 1
+                        px: 1,
+                        whiteSpace: "nowrap"
                       }}
                       onClick={() => handleAddToCart(product)}
                     >
