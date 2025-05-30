@@ -119,47 +119,6 @@ const LedProduct = () => {
     <>
       <Navbar />
       
-      {/* Filter and Sort buttons - only on mobile */}
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          borderBottom: "1px solid",
-          borderColor: "divider",
-          justifyContent: "space-between",
-          px: 2,
-          py: 1.5
-        }}
-      >
-        <Button 
-          variant="outlined" 
-          color="neutral" 
-          startDecorator={<Box sx={{ fontSize: "1.2rem" }}>↓</Box>}
-          sx={{ 
-            flex: 1, 
-            justifyContent: "center",
-            borderRadius: "0",
-            borderColor: "transparent",
-            mr: 1
-          }}
-        >
-          Sort
-        </Button>
-        <Box sx={{ width: "1px", bgcolor: "divider" }} />
-        <Button 
-          variant="outlined" 
-          color="neutral" 
-          startDecorator={<Box sx={{ fontSize: "1.2rem" }}>≡</Box>}
-          sx={{ 
-            flex: 1, 
-            justifyContent: "center",
-            borderRadius: "0",
-            borderColor: "transparent",
-            ml: 1
-          }}
-        >
-          Filter
-        </Button>
-      </Box>
 
       {/* Main content container */}
       <Box 
@@ -199,9 +158,9 @@ const LedProduct = () => {
             const showPrice = selected.size?.price || product.price || "14999";
 
             return (
-              <Card 
+              <Card
                 key={index}
-                sx={{ 
+                sx={{
                   borderRadius: 0,
                   boxShadow: "none",
                   display: "flex",
@@ -213,7 +172,7 @@ const LedProduct = () => {
               >
                 {/* Image Section - Left side on mobile */}
                 <Box
-                  sx={{ 
+                  sx={{
                     width: "40%",
                     display: "flex",
                     alignItems: "center",
@@ -223,36 +182,38 @@ const LedProduct = () => {
                 >
                   <AspectRatio ratio="1" sx={{ width: "100%" }}>
                     <Zoom>
-                    <img 
-                      src={currentImage} 
-                      alt={product.name} 
-                      loading="lazy" 
-                      style={{ 
-                        objectFit: "contain",
+                      <img
+                        src={currentImage}
+                        alt={product.name}
+                        loading="lazy"
+                        style={{
+                          objectFit: "fill",
                           maxHeight: "100%",
                           width: "100%",
                           height: "100%",
-                          cursor: "zoom-in"
-                      }}
-                    />
+                          cursor: "pointer",
+                          display: "block",
+                          backgroundColor: "none"
+                        }}
+                      />
                     </Zoom>
                   </AspectRatio>
                 </Box>
-                
+
                 {/* Content Section - Right side on mobile */}
-                <Box sx={{ 
-                  display: "flex", 
+                <Box sx={{
+                  display: "flex",
                   flexDirection: "column",
                   flex: 1,
                   width: "60%",
                   pl: 2
                 }}>
                   {/* Product Name */}
-                  <Typography 
-                    level="title-md" 
-                    sx={{ 
-                      fontSize: "1rem", 
-                      fontWeight: "normal", 
+                  <Typography
+                    level="title-md"
+                    sx={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
                       fontFamily: "Roboto, Helvetica, Arial, sans-serif",
                       color: "text.primary",
                       lineHeight: 1.3,
@@ -261,65 +222,45 @@ const LedProduct = () => {
                   >
                     {product.name}
                   </Typography>
-                  
-                  {/* Pricing Section */}
-                  <Typography 
-                    component="span" 
-                    sx={{ 
-                      fontWeight: "bold",
-                      fontSize: "18px"
-                    }}
-                  >
-                    ₹{showPrice}
-                  </Typography>
-                  
-                  {/* Free delivery text */}
-                  <Typography 
-                    level="body-sm" 
-                    sx={{ 
-                      mb: 0.5,
-                      fontSize: "14px"
-                    }}
-                  >
-                    Free delivery
-                  </Typography>
-                  
+
+                 
+
                   {/* Product specs on mobile - abbreviated version */}
                   {product.specs && Object.keys(product.specs).length > 0 && (
                     <Box sx={{ mt: 1 }}>
                       {Object.entries(product.specs).slice(0, 2).map(([key, value]) => (
-                        <Typography 
-                          key={key} 
-                          level="body-sm" 
-                          sx={{ 
+                        <Typography
+                          key={key}
+                          level="body-sm"
+                          sx={{
                             display: "flex",
-                            fontSize: "12px", 
+                            fontSize: "14px",
                             mb: 0.5,
                             color: "text.secondary"
                           }}
                         >
                           <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
                             {key} -
-                          </Box> 
+                          </Box>
                           <Box component="span" sx={{ fontWeight: "400", textTransform: "capitalize" }}>
                             {value}
-                          </Box> 
+                          </Box>
                         </Typography>
                       ))}
                     </Box>
                   )}
-                  
+
                   {/* Color and Size options for mobile */}
-                  <Box sx={{ mt: 1 }}>
+                  <Box sx={{ mt: 1,display: "flex", gap: 2, flexWrap: "wrap" }}>
                     {variants.colors?.length > 0 && (
                       <Box sx={{ mb: 1 }}>
-                        <Typography 
-                          level="body-sm" 
-                          sx={{ 
-                            color: "text.secondary", 
+                        <Typography
+                          level="body-sm"
+                          sx={{
+                            color: "text.secondary",
                             fontWeight: "600",
-                            fontSize: "12px",
-                            mb: 0.5 
+                            fontSize: "14px",
+                            mb: 0.5
                           }}
                         >
                           Colors
@@ -331,10 +272,10 @@ const LedProduct = () => {
                               size="sm"
                               variant={selected.color === color ? "solid" : "outlined"}
                               color="primary"
-                              sx={{ 
+                              sx={{
                                 borderRadius: "4px",
                                 textTransform: "none",
-                                fontSize: "10px",
+                                fontSize: "12px",
                                 minWidth: "unset",
                                 px: 1,
                                 py: 0.25
@@ -347,16 +288,16 @@ const LedProduct = () => {
                         </Box>
                       </Box>
                     )}
-                
+
                     {variants.sizes?.length > 0 && (
                       <Box>
-                        <Typography 
-                          level="body-sm" 
-                          sx={{ 
-                            color: "text.secondary", 
+                        <Typography
+                          level="body-sm"
+                          sx={{
+                            color: "text.secondary",
                             fontWeight: "600",
-                            fontSize: "12px",
-                            mb: 0.5 
+                            fontSize: "14px",
+                            mb: 0.5
                           }}
                         >
                           Sizes
@@ -368,10 +309,10 @@ const LedProduct = () => {
                               size="sm"
                               variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
                               color="primary"
-                              sx={{ 
+                              sx={{
                                 borderRadius: "4px",
                                 textTransform: "none",
-                                fontSize: "10px",
+                                fontSize: "12px",
                                 minWidth: "unset",
                                 px: 1,
                                 py: 0.25
@@ -385,13 +326,37 @@ const LedProduct = () => {
                       </Box>
                     )}
                   </Box>
-                  
+                   {/* Pricing Section */}
+                  <Typography
+                    component="span"
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                      marginTop: 1,
+                    }}
+                  >
+                    ₹{showPrice}
+                  </Typography>
+
+                  {/* Free delivery text */}
+                  <Typography
+                    level="body-sm"
+                    sx={{
+                      mb: 0.5,
+                      fontSize: "14px"
+                    }}
+                  >
+                    Free delivery
+                  </Typography>
+
                   {/* Mobile action buttons */}
-                  <Box sx={{ 
-                    display: "flex", 
+                  <Box sx={{
+                    display: "flex",
                     gap: 1,
                     mt: "auto",
-                    pt: 1
+                    pt: 1,
+                    alignItems: "center",
+                    justifyContent: "center"
                   }}>
                     <Button
                       variant="outlined"
@@ -402,7 +367,7 @@ const LedProduct = () => {
                         fontWeight: "600",
                         textTransform: "none",
                         boxShadow: "none",
-                        fontSize: "12px",
+                        fontSize: "16px",
                         px: 1
                       }}
                       onClick={() => sendWhatsAppMessage(product)}
@@ -418,8 +383,9 @@ const LedProduct = () => {
                         fontWeight: "600",
                         textTransform: "none",
                         boxShadow: "none",
-                        fontSize: "12px",
-                        px: 1
+                        fontSize: "16px",
+                        px: 1,
+                        whiteSpace: "nowrap"
                       }}
                       onClick={() => handleAddToCart(product)}
                     >
