@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 import Footer from "./Footer";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import { Select, MenuItem } from "@mui/joy";
+import {  Select, Option } from "@mui/joy";
 
 // MUI Joy imports
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -250,78 +250,72 @@ const LedProduct = () => {
                   )}
 
                   {/* Color and Size options for mobile */}
-                  <Box sx={{ mt: 1, display: "flex", gap: 1, flexWrap: "wrap" }}>
-                    {variants.colors?.length > 0 && (
-                      <Box sx={{ mb: 1, minWidth: "100px" }}>
-                        <Typography
-                          level="body-sm"
-                          sx={{
-                            color: "text.secondary",
-                            fontWeight: "600",
-                            fontSize: "14px",
-                            mb: 0.5,
-                          }}
-                        >
-                          Colors
-                        </Typography>
-                        <Select
-                          value={selected.color || ""}
-                          onChange={(event, newValue) => handleColorChange(product.id, newValue)}
-                          size="sm"
-                          sx={{
-                            borderRadius: "4px",
-                            fontSize: "12px",
-                            minWidth: "100px",
-                          }}
-                          placeholder="Select a color"
-                        >
-                          {variants.colors.map((color, idx) => (
-                            <MenuItem key={idx} value={color}>
-                              {color}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </Box>
-                    )}
+                  <Box sx={{ mt: 1, display: "flex", gap: 2, flexWrap: "wrap" }}>
+  {variants.colors?.length > 0 && (
+    <Box sx={{ mb: 1, minWidth: "120px" }}>
+      <Typography
+        level="body-sm"
+        sx={{
+          color: "text.secondary",
+          fontWeight: "600",
+          fontSize: "14px",
+          mb: 0.5
+        }}
+      >
+        Colors
+      </Typography>
+      <Select
+        size="sm"
+        value={selected.color || ""}
+        onChange={(event, value) => handleColorChange(product.id, value)}
+        sx={{
+          fontSize: "12px",
+          minWidth: "100px"
+        }}
+      >
+        {variants.colors.map((color, idx) => (
+          <Option key={idx} value={color}>
+            {color}
+          </Option>
+        ))}
+      </Select>
+    </Box>
+  )}
 
-                    {variants.sizes?.length > 0 && (
-                      <Box sx={{ minWidth: "100px" }}>
-                        <Typography
-                          level="body-sm"
-                          sx={{
-                            color: "text.secondary",
-                            fontWeight: "600",
-                            fontSize: "14px",
-                            mb: 0.5,
-                          }}
-                        >
-                          Sizes
-                        </Typography>
-                        <Select
-                          value={selected?.size?.size || ""}
-                          onChange={(event, newValue) =>
-                            handleSizeChange(
-                              product.id,
-                              variants.sizes.find((sizeObj) => sizeObj.size === newValue)
-                            )
-                          }
-                          size="sm"
-                          sx={{
-                            borderRadius: "4px",
-                            fontSize: "12px",
-                            minWidth: "100px",
-                          }}
-                          placeholder="Select a size"
-                        >
-                          {variants.sizes.map((sizeObj, idx) => (
-                            <MenuItem key={idx} value={sizeObj.size}>
-                              {sizeObj.size}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </Box>
-                    )}
-                  </Box>
+  {variants.sizes?.length > 0 && (
+    <Box sx={{ minWidth: "120px" }}>
+      <Typography
+        level="body-sm"
+        sx={{
+          color: "text.secondary",
+          fontWeight: "600",
+          fontSize: "14px",
+          mb: 0.5
+        }}
+      >
+        Sizes
+      </Typography>
+      <Select
+        size="sm"
+        value={selected?.size?.size || ""}
+        onChange={(event, value) => {
+          const sizeObj = variants.sizes.find(s => s.size === value);
+          handleSizeChange(product.id, sizeObj);
+        }}
+        sx={{
+          fontSize: "12px",
+          minWidth: "100px"
+        }}
+      >
+        {variants.sizes.map((sizeObj, idx) => (
+          <Option key={idx} value={sizeObj.size}>
+            {sizeObj.size}
+          </Option>
+        ))}
+      </Select>
+    </Box>
+  )}
+</Box>
                   {/* Pricing Section */}
                   <Typography
                     component="span"
