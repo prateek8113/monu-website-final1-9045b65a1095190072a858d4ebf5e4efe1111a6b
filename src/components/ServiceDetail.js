@@ -182,7 +182,18 @@ const ServiceDetail = () => {
       <Card key={index} sx={cardStyles}>
         {/* Image Section */}
         <Box sx={imageContainerStyles}>
-          <AspectRatio ratio={isMobile ? "1" : "4/3"} sx={{ width: "100%", backgroundColor: isMobile ? "transparent" : "#f8fafc",  overflow: "hidden", boxSizing: "border-box" }}>
+          <AspectRatio ratio={isMobile ? "1" : "4/3"} sx={{ 
+            width: "100%", 
+            backgroundColor: "transparent",
+            overflow: "hidden", 
+            boxSizing: "border-box",
+            '& .MuiAspectRatio-content': {
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'transparent' // Remove grey background
+            }
+          }}>
             <Zoom>
               <img
                 src={currentImage}
