@@ -6,18 +6,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import {  Select, Option } from "@mui/joy";
-
+import { Select, Option } from "@mui/joy";
 
 // MUI Joy imports
 import AspectRatio from "@mui/joy/AspectRatio";
 import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
-
 
 const DEFAULT_IMAGE = "/images/placeholder-product.png";
 
@@ -143,15 +139,400 @@ const ServiceDetail = () => {
     return DEFAULT_IMAGE;
   };
 
+  // Single ProductCard component to avoid duplication
+  const ProductCard = ({ product, index, isMobile = false }) => {
+    const selected = selectedOptions[product.id] || {};
+    const variants = product.variants || {};
+    const currentImage = getCurrentImage(product, selected.color);
+    const showPrice = selected.size?.price || product.price || "14999";
+
+    const cardStyles = {
+      
+      boxShadow: isMobile ? "0 4px 20px rgba(0,0,0,0.08)" : "0 8px 32px rgba(0,0,0,0.08)",
+      display: "flex",
+      flexDirection: isMobile ? "row" : "column",
+      overflow: "hidden",
+      backgroundColor: "white",
+      border: "1px solid rgba(0,0,0,0.06)",
+      transition: "all 0.3s ease",
+      height: isMobile ? "auto" : "100%",
+      
+    };
+
+    const imageContainerStyles = {
+      width: isMobile ? "100%" : "100%",
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden"
+    };
+
+    const contentStyles = {
+      display: "flex",
+      flexDirection: "column",
+      flex: 1,
+      backgroundColor: "white",
+      whitespace:isMobile ? "nowrap" : "normal",
+
+      
+    };
+
+    return (
+      <Card key={index} sx={cardStyles}>
+        {/* Image Section */}
+        <Box sx={imageContainerStyles}>
+          <AspectRatio ratio={isMobile ? "1" : "4/3"} sx={{ width: "100%", backgroundColor: isMobile ? "transparent" : "#f8fafc",  overflow: "hidden", boxSizing: "border-box" }}>
+            <Zoom>
+              <img
+                src={currentImage}
+                alt={product.name}
+                loading="lazy"
+                style={{
+                  objectFit: isMobile ? "contain" : "contain",
+                  width: "100%",
+                  height: "100%",
+                
+                }}
+              />
+            </Zoom>
+          </AspectRatio>
+        </Box>
+
+        {/* Content Section */}
+        <Box sx={contentStyles}>
+          {/* Product Name */}
+          <Typography
+            level="title-md"
+            sx={{
+              fontSize: isMobile ? "16px" : "1.3rem",
+              fontWeight: isMobile ? "700" : "800",
+              fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              color: "#1a202c",
+              lineHeight: 1,
+              mb: isMobile ? 1 : 2,
+              letterSpacing: "-0.01em"
+            }}
+          >
+            {product.name}
+          </Typography>
+
+          {/* Product specs */}
+          {product.specs && Object.keys(product.specs).length > 0 && (
+            <Box sx={{ mb: 0.5 }}>
+              {Object.entries(product.specs).slice(0, isMobile ? 2 : undefined).map(([key, value]) => (
+                <Box
+                  key={key}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: isMobile ? "flex-start" : "space-between",
+                    mb: isMobile ? 1 : 1,
+                    p: isMobile ? 1 : 1.5,
+                    backgroundColor: "#f7fafc",
+                    borderRadius: isMobile ? "6px" : "12px",
+                    border: "1px solid #e2e8f0",
+                    
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: isMobile ? "12px" : "14px",
+                      fontWeight: "600",
+                      color: "#4299e1",
+                      textTransform: isMobile ? "uppercase" : "capitalize",
+                      letterSpacing: isMobile ? "0.05em" : "normal",
+                      minWidth: isMobile ? "60px" : "auto"
+                    }}
+                  >
+                    {key}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: isMobile ? "12px" : "14px",
+                      color: "#4a5568",
+                      fontWeight: isMobile ? "500" : "600",
+                      ml: isMobile ? 1 : 0,
+                      textTransform: "capitalize"
+                    }}
+                  >
+                    {value}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          )}
+
+          {/* Color and Size options */}
+          <Box sx={{ mb: 2, 
+  display: "flex", 
+  gap: isMobile ? 1.5 : 1.5, 
+  flexWrap: isMobile ? "nowrap" : "wrap",
+  flexDirection: "row",  // Always row for both mobile and desktop
+  alignItems: "flex-start"}}>
+            {variants.colors?.length > 0 && (
+              <Box sx={{ minWidth: isMobile ? "100px" : "auto", mb: isMobile ? 0 : 2 }}>
+                <Typography
+                  sx={{
+                    color: "#718096",
+                    fontWeight: isMobile ? "700" : "700",
+                    fontSize: isMobile ? "11px" : "14px",
+                    mb: isMobile ? 0.5 : 1.5,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em"
+                  }}
+                >
+                  Color{isMobile ? "" : "s"}
+                </Typography>
+                {isMobile ? (
+                  <Select
+                    size="sm"
+                    value={selected.color || ""}
+                    onChange={(event, value) => handleColorChange(product.id, value)}
+                    sx={{
+                      fontSize: "12px",
+                      minWidth: "90px",
+                      borderRadius: "8px",
+                      backgroundColor: "white",
+                      border: "1.5px solid #e2e8f0",
+                      "&:hover": {
+                        borderColor: "#4299e1"
+                      }
+                    }}
+                  >
+                    {variants.colors.map((color, idx) => (
+                      <Option key={idx} value={color}>
+                        {color}
+                      </Option>
+                    ))}
+                  </Select>
+                ) : (
+                  <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                    {variants.colors.map((color, idx) => (
+                      <Button
+                        key={idx}
+                        size="sm"
+                        variant={selected.color === color ? "solid" : "outlined"}
+                        sx={{
+                          borderRadius: "12px",
+                          textTransform: "capitalize",
+                          fontSize: "12px",
+                          fontWeight: "600",
+                          px: 2,
+                          py: 1,
+                          minWidth: "unset",
+                          ...(selected.color === color ? {
+                            background: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)",
+                            boxShadow: "0 4px 12px rgba(66, 153, 225, 0.3)",
+                            border: "none"
+                          } : {
+                            border: "1.5px solid #e2e8f0",
+                            color: "#4a5568",
+                            backgroundColor: "white",
+                            "&:hover": {
+                              borderColor: "#4299e1",
+                              backgroundColor: "#ebf8ff"
+                            }
+                          })
+                        }}
+                        onClick={() => handleColorChange(product.id, color)}
+                      >
+                        {color}
+                      </Button>
+                    ))}
+                  </Box>
+                )}
+              </Box>
+            )}
+
+            {variants.sizes?.length > 0 && (
+              <Box sx={{ minWidth: isMobile ? "100px" : "auto" }}>
+                <Typography
+                  sx={{
+                    color: "#718096",
+                    fontWeight: isMobile ? "600" : "700",
+                    fontSize: isMobile ? "11px" : "14px",
+                    mb: isMobile ? 0.5 : 1.5,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em"
+                  }}
+                >
+                  Size{isMobile ? "" : "s"}
+                </Typography>
+                {isMobile ? (
+                  <Select
+                    size="sm"
+                    value={selected?.size?.size || ""}
+                    onChange={(event, value) => {
+                      const sizeObj = variants.sizes.find(s => s.size === value);
+                      handleSizeChange(product.id, sizeObj);
+                    }}
+                    sx={{
+                      fontSize: "12px",
+                      minWidth: "90px",
+                      borderRadius: "8px",
+                      backgroundColor: "white",
+                      border: "1.5px solid #e2e8f0",
+                      "&:hover": {
+                        borderColor: "#4299e1"
+                      }
+                    }}
+                  >
+                    {variants.sizes.map((sizeObj, idx) => (
+                      <Option key={idx} value={sizeObj.size}>
+                        {sizeObj.size}
+                      </Option>
+                    ))}
+                  </Select>
+                ) : (
+                  <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+                    {variants.sizes.map((sizeObj, idx) => (
+                      <Button
+                        key={idx}
+                        size="sm"
+                        variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
+                        sx={{
+                          borderRadius: "12px",
+                          textTransform: "uppercase",
+                          fontSize: "13px",
+                          fontWeight: "600",
+                          px: 2,
+                          py: 1,
+                          minWidth: "unset",
+                          ...(selected?.size?.size === sizeObj.size ? {
+                            background: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)",
+                            boxShadow: "0 4px 12px rgba(66, 153, 225, 0.3)",
+                            border: "none"
+                          } : {
+                            border: "1.5px solid #e2e8f0",
+                            color: "#4a5568",
+                            backgroundColor: "white",
+                            "&:hover": {
+                              borderColor: "#4299e1",
+                              backgroundColor: "#ebf8ff"
+                            }
+                          })
+                        }}
+                        onClick={() => handleSizeChange(product.id, sizeObj)}
+                      >
+                        {sizeObj.size}
+                      </Button>
+                    ))}
+                  </Box>
+                )}
+              </Box>
+            )}
+          </Box>
+
+          {/* Pricing Section */}
+          <Box sx={{ mb: isMobile ? 2 : 3 }}>
+            <Typography
+              sx={{
+                fontWeight: isMobile ? "800" : "900",
+                fontSize: isMobile ? "20px" : "1.8rem",
+                background: "linear-gradient(135deg, #4299e1 0%, #3182ce 100%)",
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+                letterSpacing: "-0.02em"
+              }}
+            >
+              ₹{showPrice}
+            </Typography>
+            {isMobile && (
+              <Typography
+                sx={{
+                  fontSize: "12px",
+                  color: "#48bb78",
+                  fontWeight: "600",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 0.5,
+                  mt: 0.5
+                }}
+              >
+                <Box
+                  component="span"
+                  sx={{
+                    width: "6px",
+                    height: "6px",
+                    borderRadius: "50%",
+                    backgroundColor: "#48bb78"
+                  }}
+                />
+                Free delivery
+                
+                
+              </Typography>
+            )}
+          </Box>
+
+          {/* Action buttons */}
+          <Box sx={{
+            display: "flex",
+            gap: isMobile ? 1 : 1.5,
+            mt: "auto"
+          }}>
+            <Button
+              variant="outlined"
+              size={isMobile ? "sm" : "md"}
+              fullWidth
+              sx={{
+                whiteSpace:isMobile ? "nowrap" : "normal",
+                borderRadius: isMobile ? "10px" : "12px",
+                fontWeight: "600",
+                textTransform: "none",
+                fontSize: isMobile ? "13px" : "15px",
+                py: isMobile ? 0 : 1.5,
+                border: isMobile ? "1.5px solid #4299e1" : "2px solid #4299e1",
+                color: "#4299e1",
+                backgroundColor: "white",
+                transition: isMobile ? "all 0.2s ease" : "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                "&:hover": {
+                  backgroundColor: "#ebf8ff",
+                  borderColor: "#3182ce",
+                  transform: "translateY(-1px)",
+                  boxShadow: isMobile ? "none" : "0 8px 20px rgba(66, 153, 225, 0.2)"
+                }
+              }}
+              onClick={() => sendWhatsAppMessage(product)}
+            >
+              Enquire
+            </Button>
+            <Button
+              variant="solid"
+              size={isMobile ? "sm" : "md"}
+              fullWidth
+              sx={{
+                borderRadius: isMobile ? "10px" : "12px",
+                fontWeight: "600",
+                textTransform: "none",
+                fontSize: isMobile ? "13px" : "15px",
+                py: isMobile ? 1 : 1.5,
+                background: "linear-gradient(135deg, #48bb78 0%, #48bb78 100%)",
+                boxShadow: isMobile ? "0 4px 12px rgba(66, 153, 225, 0.3)" : "0 8px 20px rgba(66, 153, 225, 0.3)",
+                border: "none",
+                transition: isMobile ? "all 0.2s ease" : "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                "&:hover": {
+                  background: "linear-gradient(135deg, #48bb78 0%, #48bb78 100%)",
+                  boxShadow: isMobile ? "0 6px 16px rgba(66, 225, 100, 0.4)" : "0 12px 28px rgba(66, 153, 225, 0.4)",
+                  transform: "translateY(-1px)"
+                }
+              }}
+              onClick={() => handleAddToCart(product)}
+            >
+              Add to Cart
+            </Button>
+          </Box>
+        </Box>
+      </Card>
+    );
+  };
+
   return (
     <>
       <Navbar />
-
-
-
-
-
-
       {/* Main content container */}
       <Box
         sx={{
@@ -161,13 +542,12 @@ const ServiceDetail = () => {
           py: { xs: 1, md: 3 }
         }}
       >
-        {/* Page title with different styling for mobile/desktop */}
+        {/* Page title - only show on desktop */}
         <Typography
           level="h1"
           sx={{
-            fontSize: { xs: "1.5rem", md: "2.5rem" },
-            mb: { xs: 1, md: 4 },
-            px: { xs: 2, md: 0 },
+            fontSize: "2.5rem",
+            mb: 4,
             fontWeight: "bold",
             display: { xs: "none", md: "block" }
           }}
@@ -180,243 +560,14 @@ const ServiceDetail = () => {
           sx={{
             display: { xs: "flex", md: "none" },
             flexDirection: "column",
-            gap: 1,
+            gap: 2.5,
+            px: 2,
+            py: 1
           }}
         >
-          {products.map((product, index) => {
-            const selected = selectedOptions[product.id] || {};
-            const variants = product.variants || {};
-            const currentImage = getCurrentImage(product, selected.color);
-            const showPrice = selected.size?.price || product.price || "14999";
-
-            return (
-              <Card
-                key={index}
-                sx={{
-                  borderRadius: 0,
-                  boxShadow: "none",
-                  display: "flex",
-                  flexDirection: "row",
-                  borderBottom: "1px solid",
-                  borderColor: "divider",
-                  py: 2
-                }}
-              >
-                {/* Image Section - Left side on mobile */}
-                <Box
-                  sx={{
-                    width: "60%", // Increased from 40% to 60% for a larger image
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    p: 1,
-                  }}
-                >
-                  <AspectRatio ratio="1" sx={{ width: "100%", maxWidth: "500px" }}>
-                    <Zoom>
-                      <img
-                        src={currentImage}
-                        alt={product.name}
-                        loading="lazy"
-                        style={{
-                          objectFit: "cover", // Changed to "cover" to fill the container
-                          width: "100%",
-                          height: "100%",
-                          cursor: "pointer",
-                          backgroundColor: "white",
-                        }}
-                      />
-                    </Zoom>
-                  </AspectRatio>
-                </Box>
-
-                {/* Content Section - Right side on mobile */}
-                <Box sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                  width: "60%",
-                  pl: 2
-                }}>
-                  {/* Product Name */}
-                  <Typography
-                    level="title-md"
-                    sx={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-                      color: "text.primary",
-                      lineHeight: 1.3,
-                      mb: 0.5
-                    }}
-                  >
-                    {product.name}
-                  </Typography>
-
-
-
-                  {/* Product specs on mobile - abbreviated version */}
-                  {product.specs && Object.keys(product.specs).length > 0 && (
-                    <Box sx={{ mt: 1 }}>
-                      {Object.entries(product.specs).slice(0, 2).map(([key, value]) => (
-                        <Typography
-                          key={key}
-                          level="body-sm"
-                          sx={{
-                            display: "flex",
-                            fontSize: "14px",
-                            mb: 0.5,
-                            color: "text.secondary"
-                          }}
-                        >
-                          <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                            {key} -
-                          </Box>
-                          <Box component="span" sx={{ fontWeight: "400", textTransform: "capitalize" }}>
-                            {value}
-                          </Box>
-                        </Typography>
-                      ))}
-                    </Box>
-                  )}
-
-                  {/* Color and Size options for mobile */}
-<Box sx={{ mt: 1, display: "flex", gap: 2, flexWrap: "wrap" }}>
-  {variants.colors?.length > 0 && (
-    <Box sx={{ mb: 1, minWidth: "120px" }}>
-      <Typography
-        level="body-sm"
-        sx={{
-          color: "text.secondary",
-          fontWeight: "600",
-          fontSize: "14px",
-          mb: 0.5
-        }}
-      >
-        Colors
-      </Typography>
-      <Select
-        size="sm"
-        value={selected.color || ""}
-        onChange={(event, value) => handleColorChange(product.id, value)}
-        sx={{
-          fontSize: "12px",
-          minWidth: "100px"
-        }}
-      >
-        {variants.colors.map((color, idx) => (
-          <Option key={idx} value={color}>
-            {color}
-          </Option>
-        ))}
-      </Select>
-    </Box>
-  )}
-
-  {variants.sizes?.length > 0 && (
-    <Box sx={{ minWidth: "120px" }}>
-      <Typography
-        level="body-sm"
-        sx={{
-          color: "text.secondary",
-          fontWeight: "600",
-          fontSize: "14px",
-          mb: 0.5
-        }}
-      >
-        Sizes
-      </Typography>
-      <Select
-        size="sm"
-        value={selected?.size?.size || ""}
-        onChange={(event, value) => {
-          const sizeObj = variants.sizes.find(s => s.size === value);
-          handleSizeChange(product.id, sizeObj);
-        }}
-        sx={{
-          fontSize: "12px",
-          minWidth: "100px"
-        }}
-      >
-        {variants.sizes.map((sizeObj, idx) => (
-          <Option key={idx} value={sizeObj.size}>
-            {sizeObj.size}
-          </Option>
-        ))}
-      </Select>
-    </Box>
-  )}
-</Box>
-                  {/* Pricing Section */}
-                  <Typography
-                    component="span"
-                    sx={{
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                      marginTop: 1,
-                    }}
-                  >
-                    ₹{showPrice}
-                  </Typography>
-
-                  {/* Free delivery text */}
-                  <Typography
-                    level="body-sm"
-                    sx={{
-                      mb: 0.5,
-                      fontSize: "14px"
-                    }}
-                  >
-                    Free delivery
-                  </Typography>
-
-                  {/* Mobile action buttons */}
-                  <Box sx={{
-                    display: "flex",
-                    gap: 1,
-                    mt: "auto",
-                    pt: 1,
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}>
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      size="sm"
-                      sx={{
-                        borderRadius: "4px",
-                        fontWeight: "600",
-                        textTransform: "none",
-                        boxShadow: "none",
-                        fontSize: "16px",
-                        px: 1
-                      }}
-                      onClick={() => sendWhatsAppMessage(product)}
-                    >
-                      Enquire
-                    </Button>
-                    <Button
-                      variant="solid"
-                      color="primary"
-                      size="sm"
-                      sx={{
-                        borderRadius: "4px",
-                        fontWeight: "600",
-                        textTransform: "none",
-                        boxShadow: "none",
-                        fontSize: "16px",
-                        px: 1,
-                        whiteSpace: "nowrap"
-                      }}
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Box>
-                </Box>
-              </Card>
-            );
-          })}
+          {products.map((product, index) => (
+            <ProductCard key={index} product={product} index={index} isMobile={true} />
+          ))}
         </Box>
 
         {/* Desktop view: Grid layout */}
@@ -428,231 +579,13 @@ const ServiceDetail = () => {
               lg: "repeat(3, 1fr)",
               xl: "repeat(4, 1fr)"
             },
-            gap: 4
+            gap: 3,
+            p: 3
           }}
         >
-          {products.map((product, index) => {
-            const selected = selectedOptions[product.id] || {};
-            const variants = product.variants || {};
-            const currentImage = getCurrentImage(product, selected.color);
-            const showPrice = selected.size?.price || product.price || "14999";
-
-            return (
-              <Card
-                key={index}
-                sx={{
-                  height: "100%",
-                  borderRadius: "12px",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                  transition: "all 0.3s",
-                  "&:hover": {
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-                    transform: "translateY(-5px)"
-                  },
-                  display: "flex",
-                  flexDirection: "column"
-                }}
-              >
-                {/* Image Section */}
-                <CardOverflow>
-                  <AspectRatio ratio="4/3" sx={{ minWidth: 200, height: 280 }}>
-                    <Zoom>
-                      <img
-                        src={currentImage}
-                        alt={product.name}
-                        loading="lazy"
-                        style={{
-                          objectFit: "contain",
-                          maxHeight: "100%",
-                          width: "100%",
-                          height: "100%",
-                          cursor: "zoom-in"
-                        }}
-                      />
-                    </Zoom>
-                  </AspectRatio>
-                </CardOverflow>
-
-                {/* Container for all text content */}
-                <Box sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                  mt: 1,
-                }}>
-                  {/* Text Content Section */}
-                  <CardContent sx={{ p: 2, flex: 1 }}>
-                    <Typography
-                      level="title-md"
-                      sx={{
-                        fontSize: "1.5rem",
-                        fontWeight: "bold",
-                        fontFamily: "Helvetica",
-                        color: "text.primary"
-                      }}
-                    >
-                      {product.name}
-                    </Typography>
-
-                    {product.specs && Object.keys(product.specs).length > 0 && (
-                      <Box sx={{}}>
-                        {Object.entries(product.specs).map(([key, value]) => (
-                          <Typography
-                            key={key}
-                            level="body-sm"
-                            sx={{
-                              mt: 1,
-                              display: "flex",
-                              fontSize: "20px",
-                              mb: 0.75,
-                              color: "text.secondary"
-                            }}
-                          >
-                            <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                              {key} -
-                            </Box>
-                            <Box component="span" sx={{ color: "text.secondary", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                              {value}
-                            </Box>
-                          </Typography>
-                        ))}
-                      </Box>
-                    )}
-
-                    {(variants.colors?.length > 0 || variants.sizes?.length > 0) && (
-                      <Box sx={{ mt: 1, display: "flex", flexWrap: "wrap", gap: 2 }}>
-                        {variants.colors?.length > 0 && (
-                          <Box>
-                            <Typography
-                              level="body-sm"
-                              sx={{
-                                color: "text.secondary",
-                                fontWeight: "600",
-                                fontSize: "20px",
-                                mb: 1
-                              }}
-                            >
-                              Colors
-                            </Typography>
-                            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-                              {variants.colors.map((color, idx) => (
-                                <Button
-                                  key={idx}
-                                  size="sm"
-                                  variant={selected.color === color ? "solid" : "outlined"}
-                                  color="primary"
-                                  sx={{
-                                    borderRadius: "6px",
-                                    textTransform: "none",
-                                    fontSize: "1rem",
-                                    minWidth: "unset",
-                                    px: 1.5,
-                                    py: 0.5
-                                  }}
-                                  onClick={() => handleColorChange(product.id, color)}
-                                >
-                                  {color}
-                                </Button>
-                              ))}
-                            </Box>
-                          </Box>
-                        )}
-
-                        {variants.sizes?.length > 0 && (
-                          <Box>
-                            <Typography
-                              level="body-sm"
-                              sx={{
-                                color: "text.secondary",
-                                fontWeight: "600",
-                                fontSize: "20px",
-                                mb: 1
-                              }}
-                            >
-                              Sizes
-                            </Typography>
-                            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-                              {variants.sizes.map((sizeObj, idx) => (
-                                <Button
-                                  key={idx}
-                                  size="sm"
-                                  variant={selected?.size?.size === sizeObj.size ? "solid" : "outlined"}
-                                  color="primary"
-                                  sx={{
-                                    borderRadius: "6px",
-                                    textTransform: "none",
-                                    fontSize: "1rem",
-                                    minWidth: "unset",
-                                    px: 1.5,
-                                    py: 0.5
-                                  }}
-                                  onClick={() => handleSizeChange(product.id, sizeObj)}
-                                >
-                                  {sizeObj.size}
-                                </Button>
-                              ))}
-                            </Box>
-                          </Box>
-                        )}
-                      </Box>
-                    )}
-
-                    {showPrice && (
-                      <Typography
-                        level="title-lg"
-                        sx={{
-                          mt: 1,
-                          color: "primary.main",
-                          fontWeight: "700",
-                          fontSize: "1.5rem"
-                        }}
-                      >
-                        Price-₹{showPrice}
-                      </Typography>
-                    )}
-                  </CardContent>
-
-                  {/* Buttons Section */}
-                  <CardOverflow>
-                    <Box sx={{
-                      display: "flex",
-                      gap: 1.5,
-                      p: 1
-                    }}>
-                      <Button
-                        variant="outlined"
-                        color="primary"
-                        fullWidth
-                        sx={{
-                          borderRadius: "8px",
-                          fontWeight: "600",
-                          textTransform: "none",
-                          boxShadow: "none"
-                        }}
-                        onClick={() => sendWhatsAppMessage(product)}
-                      >
-                        Enquire
-                      </Button>
-                      <Button
-                        variant="solid"
-                        color="primary"
-                        fullWidth
-                        sx={{
-                          borderRadius: "8px",
-                          fontWeight: "600",
-                          textTransform: "none",
-                          boxShadow: "none"
-                        }}
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        Add to Cart
-                      </Button>
-                    </Box>
-                  </CardOverflow>
-                </Box>
-              </Card>
-            );
-          })}
+          {products.map((product, index) => (
+            <ProductCard key={index} product={product} index={index} isMobile={false} />
+          ))}
         </Box>
       </Box>
       <Footer />
