@@ -7,6 +7,8 @@ import Footer from "./Footer";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import {  Select, Option } from "@mui/joy";
+import ChatIcon from '@mui/icons-material/Chat';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 // MUI Joy imports
@@ -147,11 +149,6 @@ const ServiceDetail = () => {
     <>
       <Navbar />
 
-
-
-
-
-
       {/* Main content container */}
       <Box
         sx={{
@@ -187,39 +184,42 @@ const ServiceDetail = () => {
             const selected = selectedOptions[product.id] || {};
             const variants = product.variants || {};
             const currentImage = getCurrentImage(product, selected.color);
-            const showPrice = selected.size?.price || product.price || "14999";
+            const showPrice = selected.size?.price || product.price || "Not Updated";
 
             return (
               <Card
                 key={index}
                 sx={{
-                  borderRadius: 0,
-                  boxShadow: "none",
+                  borderRadius: "20px",
                   display: "flex",
                   flexDirection: "row",
                   borderBottom: "1px solid",
                   borderColor: "divider",
-                  py: 2
+                  marginRight: 1,
+                  marginLeft: 1,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)", 
                 }}
               >
                 {/* Image Section - Left side on mobile */}
                 <Box
                   sx={{
-                    width: "60%", // Increased from 40% to 60% for a larger image
+                    width: "50%",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    p: 1,
                   }}
                 >
-                  <AspectRatio ratio="1" sx={{ width: "100%", maxWidth: "500px" }}>
+                  <AspectRatio ratio="1" sx={{ width: "100%", 
+                    backgroundColor: "transparent",
+                  padding:0,
+                  }}>
                     <Zoom>
                       <img
                         src={currentImage}
                         alt={product.name}
                         loading="lazy"
                         style={{
-                          objectFit: "cover", // Changed to "cover" to fill the container
+                          objectFit: "cover",
                           width: "100%",
                           height: "100%",
                           cursor: "pointer",
@@ -253,100 +253,140 @@ const ServiceDetail = () => {
                     {product.name}
                   </Typography>
 
-
-
-                  {/* Product specs on mobile - abbreviated version */}
+                  {/* Product specs on mobile - styled version */}
                   {product.specs && Object.keys(product.specs).length > 0 && (
-                    <Box sx={{ mt: 1 }}>
+                    <Box sx={{ 
+                      mt: 1, 
+                      mb: 1,
+                      p: 1.5,
+                      backgroundColor: "rgba(25, 118, 210, 0.04)",
+                      borderRadius: "12px",
+                      border: "1px solid rgba(25, 118, 210, 0.12)"
+                    }}>
                       {Object.entries(product.specs).slice(0, 2).map(([key, value]) => (
-                        <Typography
+                        <Box
                           key={key}
-                          level="body-sm"
                           sx={{
                             display: "flex",
-                            fontSize: "14px",
+                            alignItems: "center",
                             mb: 0.5,
-                            color: "text.secondary"
+                            "&:last-child": { mb: 0 }
                           }}
                         >
-                          <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                            {key} -
-                          </Box>
-                          <Box component="span" sx={{ fontWeight: "400", textTransform: "capitalize" }}>
-                            {value}
-                          </Box>
-                        </Typography>
+                          <Box
+                            sx={{
+                              width: "6px",
+                              height: "6px",
+                              backgroundColor: "primary.main",
+                              borderRadius: "50%",
+                              mr: 1,
+                              flexShrink: 0
+                            }}
+                          />
+                          <Typography
+                            level="body-sm"
+                            sx={{
+                              fontSize: "13px",
+                              color: "text.primary",
+                              fontWeight: "500"
+                            }}
+                          >
+                            <Box component="span" sx={{ 
+                              color: "primary.main", 
+                              fontWeight: "600", 
+                              textTransform: "capitalize",
+                              mr: 0.5
+                            }}>
+                              {key}:
+                            </Box>
+                            <Box component="span" sx={{ 
+                              fontWeight: "400", 
+                              textTransform: "capitalize",
+                              color: "text.secondary"
+                            }}>
+                              {value}
+                            </Box>
+                          </Typography>
+                        </Box>
                       ))}
                     </Box>
                   )}
 
-                  {/* Color and Size options for mobile */}
-<Box sx={{ mt: 1, display: "flex", gap: 2, flexWrap: "wrap" }}>
-  {variants.colors?.length > 0 && (
-    <Box sx={{ mb: 1, minWidth: "120px" }}>
-      <Typography
-        level="body-sm"
-        sx={{
-          color: "text.secondary",
-          fontWeight: "600",
-          fontSize: "14px",
-          mb: 0.5
-        }}
-      >
-        Colors
-      </Typography>
-      <Select
-        size="sm"
-        value={selected.color || ""}
-        onChange={(event, value) => handleColorChange(product.id, value)}
-        sx={{
-          fontSize: "12px",
-          minWidth: "100px"
-        }}
-      >
-        {variants.colors.map((color, idx) => (
-          <Option key={idx} value={color}>
-            {color}
-          </Option>
-        ))}
-      </Select>
-    </Box>
-  )}
+                  {/* Color and Size options for mobile - side by side with reduced width */}
+                  <Box sx={{ 
+                    mt: 1, 
+                    display: "flex", 
+                    gap: 1, 
+                    flexWrap: "wrap"
+                  }}>
+                    {variants.colors?.length > 0 && (
+                      <Box sx={{ mb: 1, minWidth: "85px", flex: 1 }}>
+                        <Typography
+                          level="body-sm"
+                          sx={{
+                            color: "text.secondary",
+                            fontWeight: "600",
+                            fontSize: "13px",
+                            mb: 0.5
+                          }}
+                        >
+                          Colors
+                        </Typography>
+                        <Select
+                          size="sm"
+                          value={selected.color || ""}
+                          onChange={(event, value) => handleColorChange(product.id, value)}
+                          sx={{
+                            fontSize: "12px",
+                            minWidth: "80px",
+                            width: "100%"
+                          }}
+                        >
+                          {variants.colors.map((color, idx) => (
+                            <Option key={idx} value={color}>
+                              {color}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Box>
+                    )}
 
-  {variants.sizes?.length > 0 && (
-    <Box sx={{ minWidth: "120px" }}>
-      <Typography
-        level="body-sm"
-        sx={{
-          color: "text.secondary",
-          fontWeight: "600",
-          fontSize: "14px",
-          mb: 0.5
-        }}
-      >
-        Sizes
-      </Typography>
-      <Select
-        size="sm"
-        value={selected?.size?.size || ""}
-        onChange={(event, value) => {
-          const sizeObj = variants.sizes.find(s => s.size === value);
-          handleSizeChange(product.id, sizeObj);
-        }}
-        sx={{
-          fontSize: "12px",
-          minWidth: "100px"
-        }}
-      >
-        {variants.sizes.map((sizeObj, idx) => (
-          <Option key={idx} value={sizeObj.size}>
-            {sizeObj.size}
-          </Option>
-        ))}
-      </Select>
-    </Box>
-  )}
-</Box>
+                    {variants.sizes?.length > 0 && (
+                      <Box sx={{ minWidth: "85px", flex: 1 }}>
+                        <Typography
+                          level="body-sm"
+                          sx={{
+                            color: "text.secondary",
+                            fontWeight: "600",
+                            fontSize: "13px",
+                            mb: 0.5
+                          }}
+                        >
+                          Sizes
+                        </Typography>
+                        <Select
+                          size="sm"
+                          value={selected?.size?.size || ""}
+                          onChange={(event, value) => {
+                            const sizeObj = variants.sizes.find(s => s.size === value);
+                            handleSizeChange(product.id, sizeObj);
+                          }}
+                          sx={{
+                            fontSize: "12px",
+                            minWidth: "80px",
+                            width: "100%"
+                          }}
+                        >
+                          {variants.sizes.map((sizeObj, idx) => (
+                            <Option key={idx} value={sizeObj.size}>
+                              {sizeObj.size}
+                            </Option>
+                          ))}
+                        </Select>
+                      </Box>
+                    )}
+                  </Box>
+
                   {/* Pricing Section */}
                   <Typography
                     component="span"
@@ -359,16 +399,52 @@ const ServiceDetail = () => {
                     ₹{showPrice}
                   </Typography>
 
-                  {/* Free delivery text */}
-                  <Typography
-                    level="body-sm"
-                    sx={{
-                      mb: 0.5,
-                      fontSize: "14px"
-                    }}
-                  >
-                    Free delivery
-                  </Typography>
+                  {/* Enhanced delivery information */}
+                  <Box sx={{ mt: 0.5, mb: 1 }}>
+                    <Typography
+                      level="body-sm"
+                      sx={{
+                        mb: 0.2,
+                        fontSize: "13px",
+                        color: "success.main",
+                        fontWeight: "600",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: "4px",
+                          height: "4px",
+                          backgroundColor: "success.main",
+                          borderRadius: "50%",
+                          mr: 0.5
+                        }}
+                      />
+                      Free delivery
+                    </Typography>
+                    <Typography
+                      level="body-sm"
+                      sx={{
+                        fontSize: "12px",
+                        color: "warning.main",
+                        fontWeight: "500",
+                        display: "flex",
+                        alignItems: "center"
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: "4px",
+                          height: "4px",
+                          backgroundColor: "warning.main",
+                          borderRadius: "50%",
+                          mr: 0.5
+                        }}
+                      />
+                      Delivery within 2 hours
+                    </Typography>
+                  </Box>
 
                   {/* Mobile action buttons */}
                   <Box sx={{
@@ -393,11 +469,12 @@ const ServiceDetail = () => {
                       }}
                       onClick={() => sendWhatsAppMessage(product)}
                     >
+                      <ChatIcon sx={{ mr: 0.5, fontSize: "18px" }} />
+
                       Enquire
                     </Button>
                     <Button
                       variant="solid"
-                      color="primary"
                       size="sm"
                       sx={{
                         borderRadius: "4px",
@@ -406,10 +483,15 @@ const ServiceDetail = () => {
                         boxShadow: "none",
                         fontSize: "16px",
                         px: 1,
-                        whiteSpace: "nowrap"
+                        whiteSpace: "nowrap",
+                        backgroundColor: "#4caf50",
+                        "&:hover": {
+                          backgroundColor: "#45a049"
+                        }
                       }}
                       onClick={() => handleAddToCart(product)}
                     >
+                       <ShoppingCartIcon sx={{ mr: 0.5, fontSize: "18px" }} />
                       Add to Cart
                     </Button>
                   </Box>
@@ -494,27 +576,61 @@ const ServiceDetail = () => {
                       {product.name}
                     </Typography>
 
+                    {/* Enhanced Desktop Specs */}
                     {product.specs && Object.keys(product.specs).length > 0 && (
-                      <Box sx={{}}>
+                      <Box sx={{ 
+                        mt: 2, 
+                        mb: 2,
+                        p: 1,
+                        backgroundColor: "rgba(25, 118, 210, 0.04)",
+                        borderRadius: "12px",
+                        border: "1px solid rgba(25, 118, 210, 0.12)"
+                      }}>
                         {Object.entries(product.specs).map(([key, value]) => (
-                          <Typography
+                          <Box
                             key={key}
-                            level="body-sm"
                             sx={{
-                              mt: 1,
                               display: "flex",
-                              fontSize: "20px",
-                              mb: 0.75,
-                              color: "text.secondary"
+                              alignItems: "center",
+                              mb: 1,
+                              "&:last-child": { mb: 0 }
                             }}
                           >
-                            <Box component="span" sx={{ color: "primary.main", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                              {key} -
-                            </Box>
-                            <Box component="span" sx={{ color: "text.secondary", fontWeight: "600", mr: 1, textTransform: "capitalize" }}>
-                              {value}
-                            </Box>
-                          </Typography>
+                            <Box
+                              sx={{
+                                width: "8px",
+                                height: "8px",
+                                backgroundColor: "primary.main",
+                                borderRadius: "50%",
+                                mr: 1.5,
+                                flexShrink: 0
+                              }}
+                            />
+                            <Typography
+                              level="body-sm"
+                              sx={{
+                                fontSize: "16px",
+                                color: "text.primary",
+                                fontWeight: "500"
+                              }}
+                            >
+                              <Box component="span" sx={{ 
+                                color: "primary.main", 
+                                fontWeight: "600", 
+                                textTransform: "capitalize",
+                                mr: 0.5
+                              }}>
+                                {key}:
+                              </Box>
+                              <Box component="span" sx={{ 
+                                fontWeight: "400", 
+                                textTransform: "capitalize",
+                                color: "text.secondary"
+                              }}>
+                                {value}
+                              </Box>
+                            </Typography>
+                          </Box>
                         ))}
                       </Box>
                     )}
@@ -601,7 +717,7 @@ const ServiceDetail = () => {
                       <Typography
                         level="title-lg"
                         sx={{
-                          mt: 1,
+                        
                           color: "primary.main",
                           fontWeight: "700",
                           fontSize: "1.5rem"
@@ -610,6 +726,53 @@ const ServiceDetail = () => {
                         Price-₹{showPrice}
                       </Typography>
                     )}
+
+                    {/* Enhanced delivery information for desktop */}
+                    <Box sx={{ mt: 1 }}>
+                      <Typography
+                        level="body-sm"
+                        sx={{
+                          mb: 0.2,
+                          fontSize: "14px",
+                          color: "blue.main",
+                          fontWeight: "600",
+                          display: "flex",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: "5px",
+                            height: "5px",
+                            backgroundColor: "success.main",
+                            borderRadius: "50%",
+                            mr: 0.7
+                          }}
+                        />
+                        Free delivery
+                      </Typography>
+                      <Typography
+                        level="body-sm"
+                        sx={{
+                          fontSize: "13px",
+                          color: "warning.main",
+                          fontWeight: "500",
+                          display: "flex",
+                          alignItems: "center"
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            width: "5px",
+                            height: "5px",
+                            backgroundColor: "warning.main",
+                            borderRadius: "50%",
+                            mr: 0.7
+                          }}
+                        />
+                        Delivery within 2 hours
+                      </Typography>
+                    </Box>
                   </CardContent>
 
                   {/* Buttons Section */}
@@ -635,13 +798,16 @@ const ServiceDetail = () => {
                       </Button>
                       <Button
                         variant="solid"
-                        color="primary"
                         fullWidth
                         sx={{
                           borderRadius: "8px",
                           fontWeight: "600",
                           textTransform: "none",
-                          boxShadow: "none"
+                          boxShadow: "none",
+                          backgroundColor: "#4caf50",
+                          "&:hover": {
+                            backgroundColor: "#45a049"
+                          }
                         }}
                         onClick={() => handleAddToCart(product)}
                       >
